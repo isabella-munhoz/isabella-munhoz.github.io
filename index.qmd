@@ -1,5 +1,5 @@
 ---
-title: "isabella-munhoz.github.io"
+title: "Hey! :)"
 ---
 
 This is a Quarto website.
