@@ -12,5 +12,19 @@
     "title": "About",
     "section": "",
     "text": "About me\nFarmacêutica e louca dos signos!"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Post da cookie!\n\n\nA melhor dog do mundo!\n\n\n\nIsabella Munhoz\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2024-07-20-first-post/index.html",
+    "href": "posts/2024-07-20-first-post/index.html",
+    "title": "Post da cookie!",
+    "section": "",
+    "text": "Olha como ela é linda!\n\n\n\nCookie"
   }
 ]

@@ -9,6 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - posts.qmd # add your posts.qmd file to your navbar!
 
 format:
   html:
