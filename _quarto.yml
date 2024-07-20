@@ -8,9 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+    right:
       - posts.qmd # add your posts.qmd file to your navbar!
-
+      - about.qmd
+      
 format:
   html:
     theme: lux

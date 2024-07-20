@@ -2,23 +2,23 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Hey! :)",
+    "title": "Hey :)",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n\nHello everyone!!"
+    "text": "Hey :)\nWelcome to my page!\n\n\nBlog\nCheck out my insights\n\n\n\n\n\n\n\n\n\n\nPost da cookie!\n\n\nA melhor dog do mundo!\n\n\n\nIsabella Munhoz\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\nDicas\nCursos que fizeram a diferença!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About me\nFarmacêutica e louca dos signos!"
+    "text": "Farmacêutica e louca dos signos!"
   },
   {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "Post da cookie!\n\n\nA melhor dog do mundo!\n\n\n\nIsabella Munhoz\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Post da cookie!\n\n\n\ncategoria-teste\n\n\n\nA melhor dog do mundo!\n\n\n\nIsabella Munhoz\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2024-07-20-first-post/index.html",
@@ -26,5 +26,33 @@
     "title": "Post da cookie!",
     "section": "",
     "text": "Olha como ela é linda!\n\n\n\nCookie"
+  },
+  {
+    "objectID": "index.html#textosposts",
+    "href": "index.html#textosposts",
+    "title": "Isabella Munhoz",
+    "section": "Textos/Posts",
+    "text": "Textos/Posts"
+  },
+  {
+    "objectID": "index.html#posts",
+    "href": "index.html#posts",
+    "title": "Isabella Munhoz",
+    "section": "",
+    "text": "Check out my insights"
+  },
+  {
+    "objectID": "index.html#blog",
+    "href": "index.html#blog",
+    "title": "Isabella Munhoz",
+    "section": "",
+    "text": "Check out my insights"
+  },
+  {
+    "objectID": "index.html#dicas",
+    "href": "index.html#dicas",
+    "title": "Isabella Munhoz",
+    "section": "Dicas",
+    "text": "Dicas\nCursos que fizeram a diferença!"
   }
 ]

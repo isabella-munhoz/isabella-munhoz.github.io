@@ -4,5 +4,11 @@
     "items": [
       "/posts/2024-07-20-first-post/index.html"
     ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/2024-07-20-first-post/index.html"
+    ]
   }
 ]

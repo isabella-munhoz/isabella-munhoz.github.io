@@ -2,6 +2,6 @@
 title: "About"
 ---
 
-About me
+<br>
 
 Farmacêutica e louca dos signos!

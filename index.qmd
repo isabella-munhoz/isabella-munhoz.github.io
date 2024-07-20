@@ -1,13 +1,29 @@
 ---
-title: "Hey! :)"
+title: ""
+listing:
+  id: blog-listing
+  contents: posts # all Quarto docs in the `posts` directory will be included on your listing page
+  type: grid # or `default` or `table`; each type has its own set of yaml options to include
+  sort: "date desc" # can also sort on more than one field
+  #sort-ui: false
+  #filter-ui: false
+navbar: true # barra preta em cima da página
+toc: true # navegação lateral que diz "on this page"
 ---
 
-This is a Quarto website.
+# Hey :)
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Welcome to my page!
 
-```{r}
-1 + 1
-```
+# Blog
 
-Hello everyone!! 
+Check out my insights
+
+::: {#blog-listing}
+:::
+
+
+# Dicas
+
+Cursos que fizeram a diferença!
+
