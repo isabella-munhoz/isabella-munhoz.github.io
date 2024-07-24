@@ -15,8 +15,4 @@ website:
 format:
   html:
     theme: lux
-    css: styles.css
-    toc: true
-
-
-
+    #css: styles.css

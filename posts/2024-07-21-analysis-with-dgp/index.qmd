@@ -1,0 +1,451 @@
+---
+title: "Quando os confundidores nos confundem"
+description: "Usando DGP para enxergar problemas na análise descritiva"
+author:
+  - name: Isabella Munhoz
+    #url: www.isabelamunhoz.com
+date: 2024-07-21
+#categories: [categoria-teste] # self-defined categories
+#image: cookie-image.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+
+my_options <- options(
+  scipen = 999
+)
+
+```
+
+# Motivação
+
+Acredito que, atualmente, o livro "The Effect" do professor Nick Huntington-Klein tem sido meu maior companheiro de estudo. 
+
+Caminho em ciência de dados me levou a estudar inúmeras coisas, mas com certeza causalidade tem ganhado um espaço grande no meu coração.
+
+Nick Huntington-Klein tem a qualidade que mais admiro em um professor: traduzir temas complexos de forma simples através de exemplos palpáveis, que nos permitem trazer o conteúdo teórico para a realidade.
+
+Um ponto chave na carreira do cientista de dados também é conseguir traduzir o que fazemos para áreas não técnicas (as áreas para as quais vamos, em geral, entregar nossos modelos e conclusões).
+
+Durante a leitura do capítulo X, um exemplo que ele deu me chamou a atenção... Ness parte do livro, Nick (já sinto que ele um amigo próximo) trouxe um exemplo que me acendeu uma luz de como traduzir para áreas não técnicas como análises descritivas, que não levam em conta variáveis confundidoras, podem nos levar a conclusões equivocadas. Pra isso, ele usou o processo gerador de dados para simular uma população e mostrar como podemos concluir algo errado quando não desenhamos os caminhos alternativos que explicam causalidade.
+
+Vou tentar usar o exemplo dele (e algumas outras coisas que refleti enquanto lia esse capítulo) para mostrar como as vriáveis confundidoras podem nos colcar em apuros.
+  
+# Criando o nosso universo
+
+Vamos começar simulando uma população. Dado que estamos criando todas as regras de como nosso universo funciona, sabemos exatamente o processo gerador dos dados (DGP) e podemos concluir como as coisas acontecem...
+
+No nosso mudinho, temos as seguinte regras:
+
+- 30% dos indivíduos possuem diploma
+- 20% dos indivíduos possuem cabelo castanho
+- O salário dos indivíduos segue uma distrbuição log-normal
+- Se um indivíduo tem diploma, seu salário aumenta em 20%
+- Se um indivíduo tem cabelo castanho, seu salário aumenta em 10%
+
+```{r echo = TRUE} 
+#| code-fold: false
+
+# definindo o tamanho da população
+pop_size <- 1000000
+
+set.seed(123)
+population <- tibble(
+  # gerando o id do indivíduo
+  id = 1:pop_size,
+  # gerando uma distribuição binomial, com 30% de probabilidade do usuário em ter um diploma
+  college_degree = rbinom(pop_size, size = 1, prob = 0.3),
+  # gerando uma distribuição binomial, com 20% de probabilidade do usuário em ter um cabelo castanho
+  brown_hair = rbinom(pop_size, size = 1, prob = 0.2)
+)
+
+# sumarizando os dados da população
+population |> 
+  summarise(
+    perc_college_degree = (sum(college_degree) / n()) * 100,
+    perc_brown_hair = (sum(brown_hair) / n()) * 100
+  ) |> 
+  kable(caption = "Tabela", format = "html") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  )
+
+```
+
+Para cada indivíduo gerado na nossa população, vamos calcular o salário conforme as regras estabelecidas acima.
+
+**Um pequeno parênteses sobre o cálculo do salário...**
+
+Conforme dito, o salário é log-normal. A primeira vez que pensei em como simular, foi ...  Contudo, olhando no livro, o autor indicava calulcar o salário da seguinte maneira... Só queria mostrar aqui que ambos os jeitos equivalem a mesma coisa...
+
+Vamos seguir no cógido calculando o salário conforme o Nick indicou...
+
+```{r}
+
+population <- population |> 
+  mutate(
+    error_term = rnorm(n = pop_size, mean = 5, sd = 1),
+    log_income = brown_hair * 0.1 + college_degree * 0.2 + error_term,
+    income = exp(log_income)
+  )
+
+```
+
+Plot do salário
+
+```{r}
+
+population |> 
+  ggplot(
+    aes(
+      x = income
+    )
+  ) +
+  geom_histogram(
+    aes(y = ..density..),
+    bins = 100
+  ) +
+  geom_density(
+    color = "red"
+  ) +
+  theme_bw()
+
+```
+
+Plot do log do salário
+
+```{r}
+
+population |> 
+  ggplot(
+    aes(
+      x = log_income
+    )
+  ) +
+  geom_histogram(
+    aes(y = ..density..),
+    bins = 100
+  ) +
+  geom_density(
+    color = "red"
+  ) +
+  theme_bw()
+
+```
+
+Como sabemos que indivíduos de cabelo castanho tem um salário 10% maior, esperamos ver isso nos dados...
+
+```{r}
+
+population |> 
+  ggplot(
+    aes(
+      x = log_income,
+      group = factor(brown_hair),
+      color = factor(brown_hair)
+    )
+  ) +
+  geom_density() +
+  theme_minimal() +
+  labs(
+    color = "brown_hair"
+  )
+
+```
+
+```{r}
+
+population |> 
+  summarise(
+    mean_log_income = mean(log_income),
+    .by = c(brown_hair)
+  ) |> 
+  arrange(
+    brown_hair
+  ) |> 
+  kable(caption = "Tabela", format = "html") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  )
+
+```
+
+Se segmentamos essa análise somente para indivíduos que não possuem diploma, chegamos na mesma conclusão.
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 0
+  ) |> 
+  ggplot(
+    aes(
+      x = log_income,
+      group = factor(brown_hair),
+      color = factor(brown_hair)
+    )
+  ) +
+  geom_density() +
+  theme_minimal() +
+  labs(
+    color = "brown_hair"
+  )
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 0
+  ) |> 
+  summarise(
+    mean_log_income = mean(log_income),
+    .by = c(brown_hair)
+  ) |> 
+  arrange(
+    brown_hair
+  ) |> 
+  kable(caption = "Tabela", format = "html") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  )
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 1
+  ) |> 
+  ggplot(
+    aes(
+      x = log_income,
+      group = factor(brown_hair),
+      color = factor(brown_hair)
+    )
+  ) +
+  geom_density() +
+  theme_minimal() +
+  labs(
+    color = "brown_hair"
+  )
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 1
+  ) |> 
+  summarise(
+    mean_log_income = mean(log_income),
+    .by = c(brown_hair)
+  ) |> 
+  arrange(
+    brown_hair
+  ) |> 
+  kable(caption = "Tabela", format = "html") |> 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    position = "center"
+  )
+
+```
+
+So far so good... Dentro dos segmentos, conseguimos notar que o salário tem a diferença esperada. Um outro jeito que podemos ver isso é olhando para a porcentagem de indivíduos de cabelo castanho na população e nas segmentação college == 0 e college == 1. Em todos esses grupos, a quantidade de usuário se mantém igual ao DPG (de ~20%).
+
+Uma outra conclusão que podemo tirar é que as variáveis college_degree e bronw_hair são independentes, porque uma variáve não afeta a distribuição da outra variável na população.
+
+
+# Criando um outro universo...
+
+```{r}
+
+pop_size <- 1000
+
+diff1 <- c()
+diff2 <- c()
+hairs_effect <- c()
+degree_effect <- c()
+for (i in seq(100)) {
+  
+  college_degree <- rbinom(pop_size, size = 1, prob = 0.3)
+  brown_hair <- rbinom(pop_size, size = 1, prob = 0.2)
+  
+  population <- tibble(
+    id = 1:pop_size,
+    college_degree = college_degree,
+    brown_hair = brown_hair
+  )
+  
+  n_aux <- nrow(filter(population, brown_hair == 0 & college_degree == 0))
+  aux <- population |> 
+    filter(
+      brown_hair == 0 & college_degree == 0
+    ) |> 
+    select(
+      id
+    ) |> 
+    mutate(
+      dye_hair = rbinom(n = n_aux, size = 1, prob = 0.4)
+    )
+  
+  population <- population |> 
+    left_join(
+      aux,
+      by = c("id" = "id")
+    ) |> 
+    mutate(
+      dye_hair = if_else(is.na(dye_hair), 0, dye_hair),
+      hair = if_else(brown_hair == 1 | dye_hair == 1, 1, 0),
+      error_term = rnorm(n = pop_size, mean = 5, sd = 1),
+      log_income = hair * 0.1 + college_degree * 0.2 + error_term,
+      income = exp(log_income),
+      #test = exp(0.1 * brown_hair + 0.2 * college_degree + error_term)
+    )
+  
+  diff1_ <- (mean(filter(population, hair == 1)$log_income) - mean(filter(population, hair == 0)$log_income)) * 100
+  diff2_ <- (mean(filter(population, college_degree == 1 & hair == 1)$log_income) - mean(filter(population, college_degree == 1 & hair == 0)$log_income)) * 100
+  
+  diff1 <- c(diff1, diff1_)
+  diff2 <- c(diff2, diff2_)
+  
+  model <- lm(
+    log_income ~ hair + college_degree,
+    data = population
+  )
+  hair_ <- unname(coef(model)[2])
+  degree_ <- unname(coef(model)[3])
+  hairs_effect <- c(hairs_effect, hair_)
+  degree_effect <- c(degree_effect, degree_)
+  
+}
+
+```
+
+```{r}
+
+population |> 
+  summarise(
+    sum(hair) / n()
+  )
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 0
+  ) |> 
+  summarise(
+    sum(hair) / n()
+  )
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    college_degree == 1
+  ) |> 
+  summarise(
+    sum(hair) / n()
+  )
+
+```
+
+```{r}
+
+hist(diff1)
+
+```
+
+```{r}
+
+hist(diff2)
+
+```
+
+```{r}
+
+sum(population$college_degree)
+sum(population$brown_hair)
+
+```
+
+```{r}
+
+population |> 
+  filter(
+    brown_hair == 0 & 
+      college_degree == 0 
+  ) |> 
+  summarise(
+    n = n(),
+    s = sum(dye_hair),
+    perc = (s / n) * 100
+  )
+
+```
+
+```{r}
+
+sum(population$hair)
+
+```
+
+```{r}
+
+hist(hairs_effect * 100)
+
+```
+
+```{r}
+
+hist(degree_effect * 100)
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+
