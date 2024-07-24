@@ -24,7 +24,7 @@ my_options <- options(
 
 # Motivação
 
-Acredito que, atualmente, o livro "The Effect" do professor Nick Huntington-Klein tem sido meu maior companheiro de estudo. 
+Acredito que, atualmente, o livro "The Effect" do professor Nick Huntington-Klein tem sido meu maior companheiro de estudo.
 
 Caminho em ciência de dados me levou a estudar inúmeras coisas, mas com certeza causalidade tem ganhado um espaço grande no meu coração.
 
@@ -35,20 +35,20 @@ Um ponto chave na carreira do cientista de dados também é conseguir traduzir o
 Durante a leitura do capítulo X, um exemplo que ele deu me chamou a atenção... Ness parte do livro, Nick (já sinto que ele um amigo próximo) trouxe um exemplo que me acendeu uma luz de como traduzir para áreas não técnicas como análises descritivas, que não levam em conta variáveis confundidoras, podem nos levar a conclusões equivocadas. Pra isso, ele usou o processo gerador de dados para simular uma população e mostrar como podemos concluir algo errado quando não desenhamos os caminhos alternativos que explicam causalidade.
 
 Vou tentar usar o exemplo dele (e algumas outras coisas que refleti enquanto lia esse capítulo) para mostrar como as vriáveis confundidoras podem nos colcar em apuros.
-  
+
 # Criando o nosso universo
 
 Vamos começar simulando uma população. Dado que estamos criando todas as regras de como nosso universo funciona, sabemos exatamente o processo gerador dos dados (DGP) e podemos concluir como as coisas acontecem...
 
 No nosso mudinho, temos as seguinte regras:
 
-- 30% dos indivíduos possuem diploma
-- 20% dos indivíduos possuem cabelo castanho
-- O salário dos indivíduos segue uma distrbuição log-normal
-- Se um indivíduo tem diploma, seu salário aumenta em 20%
-- Se um indivíduo tem cabelo castanho, seu salário aumenta em 10%
+-   30% dos indivíduos possuem diploma
+-   20% dos indivíduos possuem cabelo castanho
+-   O salário dos indivíduos segue uma distrbuição log-normal
+-   Se um indivíduo tem diploma, seu salário aumenta em 20%
+-   Se um indivíduo tem cabelo castanho, seu salário aumenta em 10%
 
-```{r echo = TRUE} 
+```{r echo = TRUE}
 #| code-fold: false
 
 # definindo o tamanho da população
@@ -81,9 +81,10 @@ population |>
 
 Para cada indivíduo gerado na nossa população, vamos calcular o salário conforme as regras estabelecidas acima.
 
-**Um pequeno parênteses sobre o cálculo do salário...**
+<strong>Um pequeno parênteses sobre o cálculo do salário </strong>
 
-Conforme dito, o salário é log-normal. A primeira vez que pensei em como simular, foi ...  Contudo, olhando no livro, o autor indicava calulcar o salário da seguinte maneira... Só queria mostrar aqui que ambos os jeitos equivalem a mesma coisa...
+
+Conforme dito, o salário é log-normal. A primeira vez que pensei em como simular, foi ... Contudo, olhando no livro, o autor indicava calulcar o salário da seguinte maneira... Só queria mostrar aqui que ambos os jeitos equivalem a mesma coisa...
 
 Vamos seguir no cógido calculando o salário conforme o Nick indicou...
 
@@ -267,10 +268,9 @@ population |>
 
 ```
 
-So far so good... Dentro dos segmentos, conseguimos notar que o salário tem a diferença esperada. Um outro jeito que podemos ver isso é olhando para a porcentagem de indivíduos de cabelo castanho na população e nas segmentação college == 0 e college == 1. Em todos esses grupos, a quantidade de usuário se mantém igual ao DPG (de ~20%).
+So far so good... Dentro dos segmentos, conseguimos notar que o salário tem a diferença esperada. Um outro jeito que podemos ver isso é olhando para a porcentagem de indivíduos de cabelo castanho na população e nas segmentação college == 0 e college == 1. Em todos esses grupos, a quantidade de usuário se mantém igual ao DPG (de \~20%).
 
 Uma outra conclusão que podemo tirar é que as variáveis college_degree e bronw_hair são independentes, porque uma variáve não afeta a distribuição da outra variável na população.
-
 
 # Criando um outro universo...
 
@@ -446,6 +446,3 @@ hist(degree_effect * 100)
 ```{r}
 
 ```
-
-
-

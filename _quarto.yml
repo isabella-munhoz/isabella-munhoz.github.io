@@ -15,4 +15,4 @@ website:
 format:
   html:
     theme: lux
-    #css: styles.css
+    css: styles.css
