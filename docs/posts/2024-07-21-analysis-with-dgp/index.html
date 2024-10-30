@@ -227,13 +227,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ponto-de-partida" class="level1">
 <h1>Ponto de partida</h1>
+<p>Antes de colocar a mão na massa, acho que vale a pena algumas definições trazidas pelo professor Nick ao longo do livro.</p>
+<p>Primeiramente, quando estudamos causalidade, nosso objetivo principal é entender como o mundo funciona. Isso é o que buscamos quando fazemos ciência.</p>
+<p>Gosto muito dessa passagem inicial do <a href="https://theeffectbook.net/ch-Identification.html" target="_blank">capítulo 5</a>, na qual o professor Nick traz uma ótima definição sobre ciência:</p>
+<blockquote class="blockquote">
+<p>“One way to think about science generally is that scientists believe that there are regular laws that govern the way the universe works. These laws are an example of a “data generating process” (DGP). The laws work behind the scenes, doing what they do whether we know about them or not. We can’t see them directly, but we do see the data that result from them. (…) In addition to thinking that there are underlying laws like this, scientists also believe that we can learn what these laws are from empirical observation.”</p>
+</blockquote>
+<p>Dessa forma, ao refletirmos sobre causalidade, é fundamental considerarmos o processo gerador de dados daquele “universo” (ou, pelo menos, como imaginamos ser esse processo) para garantir que estamos desenvolvendo um modelo que realmente reflete a realidade.</p>
+<p>Para aprofundar nossa compreensão sobre o processo gerador de dados e seu impacto no desenho da pesquisa, o professor Nick sugere uma abordagem prática: “trapacear” um pouco e criar um universo no qual conhecemos as leis que regem o processo gerador de dados. Uma vez que sabemos as verdadeiras leis que criaram os dados que temos em mãos, conseguimos identificar como certas variáveis podem confundir nossa análise se não isolarmos seus efeitos adequadamente.</p>
 </section>
 <section id="criando-o-nosso-universo" class="level1">
 <h1>Criando o nosso universo</h1>
-<p>Vamos começar simulando uma população. Dado que estamos criando todas as regras de como nosso universo funciona, sabemos exatamente o processo gerador dos dados (DGP) e podemos concluir como as coisas acontecem…</p>
-<p>No nosso mudinho, temos as seguinte regras:</p>
+<p>Vamos começar, então, gerando nossa população. Como estamos criando todas as regras (ou seja, sabemos o processo gerador de dados), podemos concluir se nossas análises realmente refletem como o nosso universo funciona.</p>
+<p>As leis que regem nosso universo são as seguintes:</p>
 <ul>
-<li>30% dos indivíduos possuem diploma</li>
+<li>30% dos indivíduos possuem diploma universitário</li>
 <li>20% dos indivíduos possuem cabelo castanho</li>
 <li>O salário dos indivíduos segue uma distrbuição log-normal</li>
 <li>Se um indivíduo tem diploma, seu salário aumenta em 20%</li>
@@ -247,17 +255,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id do indivíduo</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>pop_size,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 30% de probabilidade do usuário em ter um diploma</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 30% de probabilidade do indivíduo em ter um diploma universitário</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">college_degree =</span> <span class="fu">rbinom</span>(pop_size, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.3</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 20% de probabilidade do usuário em ter um cabelo castanho</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 20% de probabilidade do indivíduo em ter um cabelo castanho</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">brown_hair =</span> <span class="fu">rbinom</span>(pop_size, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.2</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Na tabela abaixo, avaliamos se nosso universo realmente tem 30% dos indivíduos com diploma universitário e 20% dos indivíduos com cabelo castanho (os números não serão exatos devido a aleatoriedade na geração dos dados).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
-<caption>Tabela 1. Porcentagem de indivíduos com diploma e cabelo castanho na população gerada</caption>
+<caption>Tabela 1. Porcentagem de indivíduos com diploma universitário e cabelo castanho na população gerada</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">college_degree%</th>
@@ -276,8 +285,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<p>Para cada indivíduo gerado na nossa população, vamos calcular o salário conforme as regras estabelecidas acima.</p>
-<p><strong>Um pequeno parênteses sobre o cálculo do salário </strong></p>
+<p>Precisamos, agora, calcular o salário de cada indivíduo da nossa população através das regras descritas acima.</p>
+<p><strong>Um pequeno parênteses sobre o cálculo do salário…</strong></p>
+<p>A regra sobre o salário é que 1) ele segue uma distrbuição log-normal e 2) que ele aumenta X% a depender das características do indivíduo. Quando pensei com como simular esses dados pela primeira vez, imaginei que gerar uma distribuição log-normal para gerar um salário inicial e depois calcular o salário final da seguinte maneira:</p>
+<p><i>salário_final = salário_inicial + salário_inicial * 0.2 * diploma_universitário + salário_inicial * 0.1 * cabelo_castanho</i></p>
+<p>Contudo,</p>
 <p>Conforme dito, o salário é log-normal. A primeira vez que pensei em como simular, foi … Contudo, olhando no livro, o autor indicava calulcar o salário da seguinte maneira… Só queria mostrar aqui que ambos os jeitos equivalem a mesma coisa…</p>
 <p>Vamos seguir no cógido calculando o salário conforme o Nick indicou…</p>
 <div class="cell">

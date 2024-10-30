@@ -1,9 +1,7 @@
 ---
 title: "Quando os confundidores nos confundem"
 description: "Usando DGP para enxergar problemas na análise descritiva"
-author:
-  - name: Isabella Munhoz
-    #url: www.isabelamunhoz.com
+author: Isabella Munhoz
 date: 2024-07-21
 #categories: [categoria-teste] # self-defined categories
 #image: cookie-image.jpeg
@@ -34,34 +32,45 @@ mk_tbl <- function(data, table_title) {
 
 # Motivação
 
-*[você pode pular essa seção se não quiser ler uma historinha antes do mão na massa]*
+*\[você pode pular essa seção se não quiser ler uma historinha antes do mão na massa\]*
 
 O livro [The Effect: An Introduction to Research Design and Causality](https://theeffectbook.net/){target="_blank"}, do professor Nick Huntington-Klein, tem sido meu maior companheiro atualmente. Dentre todos os tópicos que pude estudar desde que comecei a me aventurar pelo caminho das ciências de dados, com certeza o tema "causalidade" tem me feito refletir por horas.
 
 Nick tem as qualidades que mais admiro em um professor: com uma linguagem dinâmica e divertida, ele traduz temas profundos de forma simples. Com o uso de exemplos palpáveis, ele nos auxilia a enxergar o conteúdo teórico sendo aplicado na realidade, sem perder o rigor necessário. Essa habilidade tem um lugar especial no meu coração: como a minha formação acadêmica não foi em exatas, temas que são explicados dessa maneira me possibilitam estudar áreas que, anos atrás, julgava impossível.
 
-Quando comecei a trabalhar com ciência de dados, achava *[d.i.a.r.i.a.m.e.n.t.e]* que ter uma graduação em farmácia (e não em alguma área de exatas) era meu ponto mais fraco. Bom, não posso dizer que a terapia está totalmente em dia e que esse sentimento já foi superado *[ele com certeza é um amigo presente]*, mas, nos últimos tempos, tenho notado que o fato de ter uma formação em algo totalmente diferente acabou me colocando em uma posição de querer repassar tudo que venho estudando de um jeito que outras pessoas (que também não tem a formação na área de dados) consigam entender. O exercício sempre é: *como a Isabella farmacêutica gostaria que esse tema fosse apresentado?* De alguma maneira, minha maior fraqueza se tornou uma aliada porque, depois de passar por alguns projetos na área de ciência de dados, pude sentir na pele que uma parte muito importante do nosso trabalho consiste em apresentar os resultados que chegamos para áreas não-técnicas: em geral, as pessoas que realmente vão usar aquilo que desenvolvemos!
+Quando comecei a trabalhar com ciência de dados, achava *\[d.i.a.r.i.a.m.e.n.t.e\]* que ter uma graduação em farmácia (e não em alguma área de exatas) era meu ponto mais fraco. Bom, não posso dizer que a terapia está totalmente em dia e que esse sentimento já foi superado *\[ele com certeza é um amigo presente\]*, mas, nos últimos tempos, tenho notado que o fato de ter uma formação em algo totalmente diferente acabou me colocando em uma posição de querer repassar tudo que venho estudando de um jeito que outras pessoas (que também não tem a formação na área de dados) consigam entender. O exercício sempre é: *como a Isabella farmacêutica gostaria que esse tema fosse apresentado?* De alguma maneira, minha maior fraqueza se tornou uma aliada porque, depois de passar por alguns projetos na área de ciência de dados, pude sentir na pele que uma parte muito importante do nosso trabalho consiste em apresentar os resultados que chegamos para áreas não-técnicas: em geral, as pessoas que realmente vão usar aquilo que desenvolvemos!
 
-Depois desse preâmbulo todo, deixa eu chegar no propósito desse artigo: esse ano estava trabalhando em um projeto que tinha como objetivo entender quais fatores foram importantes para um usuário (da plataforma em que trabalho) assinar um determinado produto que oferecemos. Pra responder essa pergunta, usei um modelo de regressão que tinha algumas variáveis que o time de negócio envolvido no projeto julgava importantes pra explicar a conversão de um usuário de "não pagante" para "pagante". Enquanto apresentava os resultados do modelo, um colega (que trabalha nesse time para o qual estávamos entregando o projeto) me questionou o porquê de uma variável X do modelo apresentar um efeito muito menor na conversão do que eles estavam esperando. Esse time em específico tinha conduzido um estudo anterior ao meu projeto, e, em alguma análise descritiva desse estudo, tinham notado que a variável X em questão tinha um impacto muito diferente na conversão do que o impacto que estávamos vendo na minha modelagem. 
+Depois desse preâmbulo todo, deixa eu chegar no propósito desse artigo: esse ano estava trabalhando em um projeto que tinha como objetivo entender quais fatores foram importantes para um usuário (da plataforma em que trabalho) assinar um determinado produto que oferecemos. Pra responder essa pergunta, usei um modelo de regressão que tinha algumas variáveis que o time de negócio envolvido no projeto julgava importantes pra explicar a conversão de um usuário de "não pagante" para "pagante". Enquanto apresentava os resultados do modelo, um colega (que trabalha nesse time para o qual estávamos entregando o projeto) me questionou o porquê de uma variável X do modelo apresentar um efeito muito menor na conversão do que eles estavam esperando. Esse time em específico tinha conduzido um estudo anterior ao meu projeto, e, em alguma análise descritiva desse estudo, tinham notado que a variável X em questão tinha um impacto muito diferente na conversão do que o impacto que estávamos vendo na minha modelagem.
 
-Quando eles me contaram como tinham feito a análise nesse primeiro estudo, expliquei que o modelo de regressão que estávamos usando agora avaliava o efeito da variável X independentemente do efeito de outras variáveis (o que não acontecia na análise descritiva de médias do estudo anterior). A discussão sobre a diferença entre uma regressão e uma análise descritiva acabou não se aprofundando na reunião e eu segui o resto da apresentação com aquela vozinha dentro de mim dizendo: *não é essa explicação que a Isabella farmacêutica gostaria de ter ouvido*. Como se essa vozinha já não fosse chata por si só, tinha uma outra dizendo: *será que você entende de verdade como uma análise descritiva pode levar a conclusões equivocadas?* 
+Quando eles me contaram como tinham feito a análise nesse primeiro estudo, expliquei que o modelo de regressão que estávamos usando agora avaliava o efeito da variável X independentemente do efeito de outras variáveis (o que não acontecia na análise descritiva de médias do estudo anterior). A discussão sobre a diferença entre uma regressão e uma análise descritiva acabou não se aprofundando na reunião e eu segui o resto da apresentação com aquela vozinha dentro de mim dizendo: *não é essa explicação que a Isabella farmacêutica gostaria de ter ouvido*. Como se essa vozinha já não fosse chata por si só, tinha uma outra dizendo: *será que você entende de verdade como uma análise descritiva pode levar a conclusões equivocadas?*
 
-*[síndrome do impostor, seja bem-vinda]*
+*\[síndrome do impostor, seja bem-vinda\]*
 
 Na mesma semana em que essa reunião aconteceu, enquanto lia o [capítulo 5 do livro The Effect](https://theeffectbook.net/ch-Identification.html){target="_blank"}, me deparei com um exemplo que trazia, de forma resumida, um jeito de enxergar como podemos nos equivocar nas conclusões que tiramos quando avaliamos dados observacionais sem levar em consideração como as variáveis independentes de um modelo se influenciam. E é esse o objetivo desse artigo: trazer o exemplo que o querido professor Nick colocou no livro (e alguns outros insights que tive enquanto estudava esse capítulo) para tentar explicar de forma simples como confundidores de um modelo podem causar uma baita confusão.
 
-*[achei o universo muito simpático por fazer tudo se conectar em menos de 7 dias]* 🥹🙏
+*\[achei o universo muito simpático por fazer tudo se conectar em menos de 7 dias\]* 🥹🙏
 
 # Ponto de partida
 
+Antes de colocar a mão na massa, acho que vale a pena algumas definições trazidas pelo professor Nick ao longo do livro.
+
+Primeiramente, quando estudamos causalidade, nosso objetivo principal é entender como o mundo funciona. Isso é o que buscamos quando fazemos ciência.
+
+Gosto muito dessa passagem inicial do [capítulo 5](https://theeffectbook.net/ch-Identification.html){target="_blank"}, na qual o professor Nick traz uma ótima definição sobre ciência:
+
+> "One way to think about science generally is that scientists believe that there are regular laws that govern the way the universe works. These laws are an example of a “data generating process” (DGP). The laws work behind the scenes, doing what they do whether we know about them or not. We can’t see them directly, but we do see the data that result from them. (...) In addition to thinking that there are underlying laws like this, scientists also believe that we can learn what these laws are from empirical observation."
+
+Dessa forma, ao refletirmos sobre causalidade, é fundamental considerarmos o processo gerador de dados daquele "universo" (ou, pelo menos, como imaginamos ser esse processo) para garantir que estamos desenvolvendo um modelo que realmente reflete a realidade.
+
+Para aprofundar nossa compreensão sobre o processo gerador de dados e seu impacto no desenho da pesquisa, o professor Nick sugere uma abordagem prática: "trapacear" um pouco e criar um universo no qual conhecemos as leis que regem o processo gerador de dados. Uma vez que sabemos as verdadeiras leis que criaram os dados que temos em mãos, conseguimos identificar como certas variáveis podem confundir nossa análise se não isolarmos seus efeitos adequadamente.
 
 # Criando o nosso universo
 
-Vamos começar simulando uma população. Dado que estamos criando todas as regras de como nosso universo funciona, sabemos exatamente o processo gerador dos dados (DGP) e podemos concluir como as coisas acontecem...
+Vamos começar, então, gerando nossa população. Como estamos criando todas as regras (ou seja, sabemos o processo gerador de dados), podemos concluir se nossas análises realmente refletem como o nosso universo funciona.
 
-No nosso mudinho, temos as seguinte regras:
+As leis que regem nosso universo são as seguintes:
 
--   30% dos indivíduos possuem diploma
+-   30% dos indivíduos possuem diploma universitário
 -   20% dos indivíduos possuem cabelo castanho
 -   O salário dos indivíduos segue uma distrbuição log-normal
 -   Se um indivíduo tem diploma, seu salário aumenta em 20%
@@ -77,31 +86,43 @@ set.seed(123)
 population <- tibble(
   # id do indivíduo
   id = 1:pop_size,
-  # gerando uma distribuição binomial, com 30% de probabilidade do usuário em ter um diploma
+  # gerando uma distribuição binomial, com 30% de probabilidade do indivíduo em ter um diploma universitário
   college_degree = rbinom(pop_size, size = 1, prob = 0.3),
-  # gerando uma distribuição binomial, com 20% de probabilidade do usuário em ter um cabelo castanho
+  # gerando uma distribuição binomial, com 20% de probabilidade do indivíduo em ter um cabelo castanho
   brown_hair = rbinom(pop_size, size = 1, prob = 0.2)
 )
 
 ```
 
+Na tabela abaixo, avaliamos se nosso universo realmente tem 30% dos indivíduos com diploma universitário e 20% dos indivíduos com cabelo castanho (os números não serão exatos devido a aleatoriedade na geração dos dados).
+
 ```{r}
 
-# sumarizando os dados da população
+# avaliando a população gerada
 population |> 
   summarise(
     `college_degree%` = round((sum(college_degree) / n()) * 100, 3),
     `brown_hair%` = round((sum(brown_hair) / n()) * 100, 3)
   ) |> 
   mk_tbl(
-    table_title = "Tabela 1. Porcentagem de indivíduos com diploma e cabelo castanho na população gerada"
+    table_title = "Tabela 1. Porcentagem de indivíduos com diploma universitário e cabelo castanho na população gerada"
   )
 
 ```
 
-Para cada indivíduo gerado na nossa população, vamos calcular o salário conforme as regras estabelecidas acima.
+Precisamos, agora, calcular o salário de cada indivíduo da nossa população através das regras descritas acima.
 
-<strong>Um pequeno parênteses sobre o cálculo do salário </strong>
+<strong>Um pequeno parênteses sobre o cálculo do salário...</strong>
+
+A regra sobre o salário é que 1) ele segue uma distrbuição log-normal e 2) que ele aumenta X% a depender das características do indivíduo. Quando pensei com como simular esses dados pela primeira vez, imaginei que gerar uma distribuição log-normal para gerar um salário inicial e depois calcular o salário final da seguinte maneira:
+
+<i>salário_final = salário_inicial + salário_inicial * 0.2 * diploma_universitário + salário_inicial * 0.1 * cabelo_castanho</i>
+
+Contudo, todas as análises que queremos fazer será em aumento percentual caso o indivíduo possua determinada característica. Pra isso, podemos trabalhar com o log do salário que já nos permite avaliar a variação em termos percentuais: se um indivíduo tem um aumento de 0.01 no log do salário, isso equivale a um aumento de aproximadamente 10% no salário.
+
+Como gosto de exemplos concretos, vamos ver isso em números pra tudo fazer sentido.
+
+Imagine que temos um indivíduo na população que tenha um salário inicial de R$ 2500. Esse indivíduo tem diploma universiário, por isso seu salário aumenta em 20%. Calculando da primeira maneira
 
 Conforme dito, o salário é log-normal. A primeira vez que pensei em como simular, foi ... Contudo, olhando no livro, o autor indicava calulcar o salário da seguinte maneira... Só queria mostrar aqui que ambos os jeitos equivalem a mesma coisa...
 
