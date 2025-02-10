@@ -21,9 +21,3 @@ Check out my insights
 
 ::: {#blog-listing}
 :::
-
-
-# Dicas
-
-Cursos que fizeram a diferença!
-
