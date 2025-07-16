@@ -16,7 +16,7 @@ toc: false # navegação lateral que diz "on this page"
 
 # Hey :)
 
-Que alegria ter você nesse espaço que criei para compartilhar meus insights, aprendizados e refelxões ao longo dessa jornada (nada linear) que é a Ciência de Dados!
+Que alegria ter você nesse espaço criado para compartilhar meus insights, aprendizados e refelxões ao longo dessa jornada (nada linear) que é a Ciência de Dados!
 
 # About
 
@@ -24,7 +24,7 @@ Se quiser saber um pouco mais sobre mim, é só clicar [aqui](about.qmd).
 
 # Posts
 
-Confira meus insights!
+🤓
 
 ::: {#posts-listing}
 :::
