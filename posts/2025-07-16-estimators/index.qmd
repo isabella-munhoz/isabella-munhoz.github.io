@@ -4,13 +4,11 @@ description: "Entendendo um pouco mais sobre parâmetros, estimadores e estimati
 author: Isabella Munhoz
 date: 2025-07-16
 #categories: [categoria-teste] # self-defined categories
-image: 2025-07-16-capa.jpeg
+#image: 2025-07-16-capa.jpeg
 draft: false # true: post não aparece no site (é considerado rascunho)
 ---
 
-<div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 1rem;">
-  <img src="2025-07-16-capa.jpeg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;">
-</div>
+
 
 ```{r}
 
