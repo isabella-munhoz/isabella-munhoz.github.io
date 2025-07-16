@@ -1,7 +1,10 @@
 ---
-title: "Blog"
+# o arquivo posts.qmd é uma página no site
+# quando você clica na barra superior preta no item "Posts", você é redirecionado para essa página
+# essa página lista todos os posts contidos na pasta posts (isso está definido no yaml abaixo em "contents: posts")
+title: "Posts"
 listing:
-  id: blog-listing
+  id: posts-listing
   contents: posts # all Quarto docs in the `posts` directory will be included on your listing page
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   sort: "date desc" # can also sort on more than one field
@@ -12,8 +15,6 @@ toc: true
 ---
 
 <br>
-<br>
 
-
-::: {#blog-listing}
+::: {#posts-listing}
 :::

@@ -3,15 +3,16 @@ project:
   output-dir: docs
 
 website:
-  title: "Isabella Munhoz"
-  navbar:
+  title: "Isabella Munhoz" # título no menu preto superior
+  navbar: # menu preto superior
     left:
-      - href: index.qmd
-        text: Home
-    right:
-      - posts.qmd # add your posts.qmd file to your navbar!
-      - about.qmd
-      
+      - href: index.qmd # para qual página será redirecionado quando clicado
+        text: Home # nome que aparece no menu preto superior
+      - href: posts.qmd
+        text: Posts
+      - href: about.qmd
+        text: About
+
 format:
   html:
     theme: lux

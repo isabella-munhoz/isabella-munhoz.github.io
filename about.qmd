@@ -4,10 +4,10 @@ title: "About"
 
 <br>
 
-Testando alterações aqui... mais uma vez... saca só...
+![](images/IMG_9609.jpg){width=250 style="float: left; margin-right: 20px;"}
 
+Formada em farmácia, me apaixonei pela Ciência de Dados quando entendi que o computador poderia ser o meu laboratório mundo afora. Desde 2021, atuo como cientista de dados na Hotmart, buscando sempre conectar o conteúdo que técnico aprendo todos os dias com aplicações práticas que façam diferença no mundo real.
 
+Entre modelos e queries, nas horas vagas, gosto de experimentar atividades que me tiram da lógica do trabalho. *(Como corte e costura é a bola da vez, não se assuste se encontrar algum post nesse site sobre como usar uma máquina reta para fazer ponto overlock.)*
 
-![](images/IMG_9609.jpg){width=200px style="float: left; margin-right: 20px;"}
-
-Este é o texto que vai aparecer ao lado da imagem, ocupando o restante da linha horizontal. Você pode continuar escrevendo aqui normalmente.
+Como ainda não encontrei uma explicação lógica para a minha trajetória até aqui, prefiro dizer que essa miscelânea de coisas que me atravessam é culpa do Sol que estava em Gêmeos quando eu nasci... 🌞♊

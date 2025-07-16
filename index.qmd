@@ -1,23 +1,30 @@
 ---
+# quando entramos em isabellamunhoz.com é a página inicial do site
+# pelo o que entendi, isso é um padrão do quarto (a página index.qmd sempre será a página inicial)
 title: ""
+# o que será listado nessa página
 listing:
-  id: blog-listing
-  contents: posts # all Quarto docs in the `posts` directory will be included on your listing page
+  id: posts-listing # esse id é importante para colocar o listing na posição correta
+  contents: posts # todos arquivos contidos e posts/ serão listados
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   sort: "date desc" # can also sort on more than one field
   #sort-ui: false
   #filter-ui: false
 navbar: true # barra preta em cima da página
-toc: true # navegação lateral que diz "on this page"
+toc: false # navegação lateral que diz "on this page"
 ---
 
 # Hey :)
 
-Welcome to my page!
+Que alegria ter você nesse espaço que criei para compartilhar meus insights, aprendizados e refelxões ao longo dessa jornada (nada linear) que é a Ciência de Dados!
 
-# Blog
+# About
 
-Check out my insights
+Se quiser saber um pouco mais sobre mim, é só clicar [aqui](about.qmd).
 
-::: {#blog-listing}
+# Posts
+
+Confira meus insights!
+
+::: {#posts-listing}
 :::
