@@ -5,7 +5,7 @@ author: Isabella Munhoz
 date: 2024-07-21
 #categories: [categoria-teste] # self-defined categories
 #image: cookie-image.jpeg
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
 ```{r}

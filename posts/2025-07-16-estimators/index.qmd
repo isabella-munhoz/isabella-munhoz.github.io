@@ -1,0 +1,58 @@
+---
+title: "E esse estimador aí?"
+description: "Entendendo um pouco mais sobre parâmetros, estimadores e estimativas"
+author: Isabella Munhoz
+date: 2025-07-16
+#categories: [categoria-teste] # self-defined categories
+image: 2025-07-16-capa.jpeg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+<div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 1rem;">
+  <img src="2025-07-16-capa.jpeg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;">
+</div>
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+
+my_options <- options(
+  scipen = 999
+)
+
+mk_tbl <- function(data, table_title) {
+  data |> 
+    kable(caption = table_title, format = "html") |> 
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+      full_width = FALSE,
+      position = "center"
+    )
+}
+
+```
+
+# Motivação
+
+Explicar...
+
+```{r echo = TRUE}
+#| code-fold: false
+
+# definindo o tamanho da população
+pop_size <- 1000000
+
+set.seed(123)
+population <- tibble(
+  # id do indivíduo
+  id = 1:pop_size,
+  # gerando uma distribuição binomial, com 30% de probabilidade do indivíduo em ter um diploma universitário
+  college_degree = rbinom(pop_size, size = 1, prob = 0.3),
+  # gerando uma distribuição binomial, com 20% de probabilidade do indivíduo em ter um cabelo castanho
+  brown_hair = rbinom(pop_size, size = 1, prob = 0.2)
+)
+
+```
+

@@ -6,7 +6,7 @@ title: ""
 listing:
   id: posts-listing # esse id é importante para colocar o listing na posição correta
   contents: posts # todos arquivos contidos e posts/ serão listados
-  type: grid # or `default` or `table`; each type has its own set of yaml options to include
+  type: grid # grid, default, table 
   sort: "date desc" # can also sort on more than one field
   #sort-ui: false
   #filter-ui: false
