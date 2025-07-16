@@ -4,4 +4,10 @@ title: "About"
 
 <br>
 
-Farmacêutica e louca dos signos!
+Testando alterações aqui... mais uma vez... saca só...
+
+
+
+![](images/IMG_9609.jpg){width=200px style="float: left; margin-right: 20px;"}
+
+Este é o texto que vai aparecer ao lado da imagem, ocupando o restante da linha horizontal. Você pode continuar escrevendo aqui normalmente.
