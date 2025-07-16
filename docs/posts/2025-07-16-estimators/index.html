@@ -119,6 +119,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         color: #FFFFFF;
       }
 </style>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -203,6 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação">Motivação</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link" data-scroll-target="#introdução">Introdução</a></li>
   </ul>
 </nav>
     </div>
@@ -218,7 +221,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="motivação" class="level1">
 <h1>Motivação</h1>
-<p>Quando comecei a estudar estatística, me lembro de uma aula sobre Inferência em que a professora estava explicando sobre a diferença entre parâmetros, estimadores e estimativas. (…)</p>
+<p>Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: <strong>Então, a média amostral é o melhor estimador da média populacional.</strong></p>
+<p>Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno com a formação em alguma área de exatas… Mas, pra mim, que tive uma formação em biológicas/saúde, essa frase gerou uma sequência de pensamentos [e emoções]:</p>
+<blockquote class="blockquote">
+<p>É óbvio que a média amostral é a melhor forma de estimar a média populacional… [aff 🙄]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Mas calma… se para calcular a média populacional, somamos todos os elementos e dividimos pelo <em>N</em> populacional, o jeito de calcular a média amostral não é somando todos os elementos da amostra e dividindo pelo <em>n</em> amostral? [a vida não é direta assim? 👀]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Tem algum outro jeito de estimar aa média populacional que não seja usando a média amostral? [não, né?! 😬]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Para estimar parâmetros como a média, variância ou desvio-padrão de uma população, não bastaria simplesmente aplicar as mesmas fórmulas usadas para a população, mas utilizando os dados da amostra? [😱😱😱😱😱]</p>
+</blockquote>
+<p>Todos os questionamentos que passaram pela minha mente foram angustiantes… Por um bom tempo eu nem conseguia organizar essas dúvidas de forma que pudesse formular as perguntas certas… Infelizmente, muitos professores de exatas têm pouca sensibilidade para explicar conceitos que, para eles, são óbvios. E, quando migramos de área, entender esses conceitos iniciais é essencial para construir uma base sólida para todos os outros mil conceitos que virão pela frente.</p>
+<p>Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação tão simples feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população <em>(ou seja, desenhar uma população com parâmetros conhecidos)</em> e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como os conceitos de parâmetros, estimadores e estimativas se conectam.</p>
+</section>
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
+<p>Um passo para trás: objetivo da inferência… Por que precisamos de amostras para inferir sobre parâmetros populacionas? Por que queremos saber os parâmetros populacionais?</p>
+<p>Exemplo fictício: estimar o salário informal dos habitantes de um país. Pra que isso serve? Como poderíamos fazer: indo atrás de toda a população ou estimando a partir de uma amostra…</p>
+<p>Não vou entrar em detalhes sobre como amostrar essa popualaçao, entao vamos dar um salto de fé aqui e imaginar que conseguimos chegar em uma amostra altamente confiável dessa população de interesse. Para cada pessoa dessa amostra, computamos a renda média feita mensalmente através de trabalhos informais… e, com isso, chegamos em conclusão sobre a amostra… mas e aí, como conseguimos chegar em conclusões sobre a população?</p>
+<p>Vamos simular?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo o tamanho da população</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pop_size <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
@@ -227,11 +252,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id do indivíduo</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>pop_size,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 30% de probabilidade do indivíduo em ter um diploma universitário</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">college_degree =</span> <span class="fu">rbinom</span>(pop_size, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.3</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando uma distribuição binomial, com 20% de probabilidade do indivíduo em ter um cabelo castanho</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">brown_hair =</span> <span class="fu">rbinom</span>(pop_size, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.2</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando os valores de salário informal, supondo uma média populacional de 2375 e um desvio-padrão de 1000</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">informal_sallary =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> pop_size, <span class="at">mean =</span> <span class="dv">2375</span>, <span class="at">sd =</span> <span class="dv">1000</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:60%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Exemplo da população gerada</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">informal_sallary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1814.524</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2144.823</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3933.708</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2445.508</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2504.288</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Temos certeza da média populacional porque determinados ela: mean = 2375, sd = 1000. Imagina que retiramos uma amostr dessa população de 100 pessoas</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 2
+       id informal_sallary
+    &lt;int&gt;            &lt;dbl&gt;
+ 1 969167            1588.
+ 2 188942            4289.
+ 3 134058            2798.
+ 4 124022            2746.
+ 5 685285            1212.
+ 6 226318            2429.
+ 7 365209            2518.
+ 8 648795            1475.
+ 9 985797            3073.
+10 193627            1308.
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2399.828</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Média populacional real: 50.00977 
+Média das médias amostrais (não viesado): 49.99139 
+Média das médias enviesadas: 50.70219 </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 

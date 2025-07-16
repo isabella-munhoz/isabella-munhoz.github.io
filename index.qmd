@@ -24,7 +24,5 @@ Se quiser saber um pouco mais sobre mim, é só clicar [aqui](about.qmd).
 
 # Posts
 
-🤓
-
 ::: {#posts-listing}
 :::
