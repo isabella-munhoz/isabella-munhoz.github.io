@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "About"
 ---
 
 <div style="display: flex; gap: 20px; align-items: center; justify-content: flex-start;">
@@ -9,15 +9,20 @@ title: ""
   <a href="https://github.com/isabella-munhoz" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-github" style="font-size: 1.5rem;"></i>
   </a>
+  <a href="https://medium.com/@isabellamunhoz" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-medium" style="font-size: 1.5rem;"></i>
+  </a>
 </div>
 
+
 ![](images/IMG_9609.jpg){width=250 style="float: left; margin-right: 20px;"}
+Formada em farmácia, me apaixonei pela Ciência de Dados quando entendi que o computador poderia ser o meu laboratório mundo afora. 
 
-Formada em farmácia, me apaixonei pela Ciência de Dados quando entendi que o computador poderia ser o meu laboratório mundo afora. Desde 2021, atuo como cientista de dados na Hotmart, buscando sempre conectar o conteúdo técnico que aprendo todos os dias com aplicações práticas que façam diferença no mundo real.
+Desde 2021, atuo como cientista de dados na Hotmart, buscando sempre conectar o conteúdo técnico que aprendo todos os dias com aplicações práticas que façam diferença no mundo real.
 
-Entre modelos e queries, nas horas vagas, gosto de experimentar atividades que me tiram da lógica do trabalho. *(Como corte e costura é a bola da vez, não se assuste se encontrar algum post nesse site sobre como usar uma máquina reta para fazer ponto overlock.)*
+Entre modelos e queries, nas horas vagas, gosto de experimentar atividades que me tiram da lógica do trabalho. *Não se assuste se encontrar algum post nesse site sobre como usar uma máquina reta para fazer ponto overlock: corte e costura é meu hobby da vez.* 🥹
 
-Como ainda não encontrei uma explicação lógica para a minha trajetória até aqui, prefiro dizer que essa miscelânea de coisas que me atravessam é culpa do Sol que estava em Gêmeos quando eu nasci... 🌞♊
+Como ainda não encontrei uma explicação lógica para a minha trajetória até aqui, prefiro dizer que essa miscelânea de coisas que me atravessam é culpa do Sol que estava em Gêmeos quando eu nasci... 🔮
 
 <br>
 
