@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="motivação" class="level1">
 <h1>Motivação</h1>
-<p>Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: <strong>Então, a média amostral é o melhor estimador da média populacional.</strong></p>
+<p>Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: <strong>“Então, a média amostral é o melhor estimador da média populacional.”</strong></p>
 <p>Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno com a formação em alguma área de exatas… Mas, pra mim, que tive uma formação em biológicas/saúde, essa frase gerou uma sequência de pensamentos [e emoções]:</p>
 <blockquote class="blockquote">
 <p>É óbvio que a média amostral é a melhor forma de estimar a média populacional… [aff 🙄]</p>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Tem algum outro jeito de estimar aa média populacional que não seja usando a média amostral? [não, né?! 😬]</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>Para estimar parâmetros como a média, variância ou desvio-padrão de uma população, não bastaria simplesmente aplicar as mesmas fórmulas usadas para a população, mas utilizando os dados da amostra? [😱😱😱😱😱]</p>
+<p>Para estimar parâmetros como a média, variância ou desvio-padrão de uma população, não bastaria simplesmente aplicar as mesmas fórmulas usadas para a população, mas utilizando os dados da amostra? [😱😱😱]</p>
 </blockquote>
 <p>Todos os questionamentos que passaram pela minha mente foram angustiantes… Por um bom tempo eu nem conseguia organizar essas dúvidas de forma que pudesse formular as perguntas certas… Infelizmente, muitos professores de exatas têm pouca sensibilidade para explicar conceitos que, para eles, são óbvios. E, quando migramos de área, entender esses conceitos iniciais é essencial para construir uma base sólida para todos os outros mil conceitos que virão pela frente.</p>
 <p>Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação tão simples feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população <em>(ou seja, desenhar uma população com parâmetros conhecidos)</em> e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como os conceitos de parâmetros, estimadores e estimativas se conectam.</p>
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id do indivíduo</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>pop_size,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando os valores de salário informal, supondo uma média populacional de 2375 e um desvio-padrão de 1000</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando os valores de salário informal, para uma população com média de 2375 e desvio-padrão de 1000</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">informal_sallary =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> pop_size, <span class="at">mean =</span> <span class="dv">2375</span>, <span class="at">sd =</span> <span class="dv">1000</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

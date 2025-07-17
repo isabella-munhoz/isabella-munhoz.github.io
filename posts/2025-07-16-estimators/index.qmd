@@ -38,7 +38,7 @@ mk_tbl <- function(data, table_title) {
 
 # Motivação
 
-Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: **Então, a média amostral é o melhor estimador da média populacional.**
+Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: **"Então, a média amostral é o melhor estimador da média populacional."**
 
 Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno com a formação em alguma área de exatas... Mas, pra mim, que tive uma formação em biológicas/saúde, essa frase gerou uma sequência de pensamentos [e emoções]: 
 
@@ -48,7 +48,7 @@ Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno 
 
 > Tem algum outro jeito de estimar aa média populacional que não seja usando a média amostral? [não, né?! 😬]
 
-> Para estimar parâmetros como a média, variância ou desvio-padrão de uma população, não bastaria simplesmente aplicar as mesmas fórmulas usadas para a população, mas utilizando os dados da amostra? [😱😱😱😱😱]
+> Para estimar parâmetros como a média, variância ou desvio-padrão de uma população, não bastaria simplesmente aplicar as mesmas fórmulas usadas para a população, mas utilizando os dados da amostra? [😱😱😱]
 
 Todos os questionamentos que passaram pela minha mente foram angustiantes... Por um bom tempo eu nem conseguia organizar essas dúvidas de forma que pudesse formular as perguntas certas... Infelizmente, muitos professores de exatas têm pouca sensibilidade para explicar conceitos que, para eles, são óbvios. E, quando migramos de área, entender esses conceitos iniciais é essencial para construir uma base sólida para todos os outros mil conceitos que virão pela frente.
 
@@ -75,7 +75,7 @@ set.seed(123)
 population <- tibble(
   # id do indivíduo
   id = 1:pop_size,
-  # gerando os valores de salário informal, supondo uma média populacional de 2375 e um desvio-padrão de 1000
+  # gerando os valores de salário informal, para uma população com média de 2375 e desvio-padrão de 1000
   informal_sallary = rnorm(n = pop_size, mean = 2375, sd = 1000)
 )
 
