@@ -38,7 +38,7 @@ mk_tbl <- function(data, table_title) {
 
 # Motivação
 
-Quando comecei a estudar estatística de modo aprofundado, me lembro bem de uma das primeiras aulas de Inferência sobre parâmetros, estimadores e estimativas. A aula seguia tranquila até o momento em que a professora disse: **"Então, a média amostral é o melhor estimador da média populacional."**
+Me lembro como se fosse hoje de uma das primeiras crises que tive quando comecei a estudar estatística pra valer: foi em uma aula de Inferência sobre parâmetros, estimadores e estimativas, que corria muito bem até o momento em que a professora disse *"então, a média amostral é o melhor estimador da média populacional."*
 
 Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno com a formação em alguma área de exatas... Mas, pra mim, que tive uma formação em biológicas/saúde, essa frase gerou uma sequência de pensamentos [e emoções]: 
 
@@ -52,7 +52,7 @@ Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno 
 
 Todos os questionamentos que passaram pela minha mente foram angustiantes... Por um bom tempo eu nem conseguia organizar essas dúvidas de forma que pudesse formular as perguntas certas... Infelizmente, muitos professores de exatas têm pouca sensibilidade para explicar conceitos que, para eles, são óbvios. E, quando migramos de área, entender esses conceitos iniciais é essencial para construir uma base sólida para todos os outros mil conceitos que virão pela frente.
 
-Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação tão simples feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população *(ou seja, desenhar uma população com parâmetros conhecidos)* e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como os conceitos de parâmetros, estimadores e estimativas se conectam.
+Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação (supostamente tão simples) feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população *(ou seja, desenhar uma população com parâmetros conhecidos)* e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como os conceitos de parâmetros, estimadores e estimativas se conectam.
 
 # Introdução
 
