@@ -52,29 +52,23 @@ Bom, eu não consigo imaginar como uma afirmação dessas reverbera em um aluno 
 
 Todos os questionamentos que passaram pela minha mente foram angustiantes... Por um bom tempo eu nem conseguia organizar essas dúvidas de forma que pudesse formular as perguntas certas... Infelizmente, muitos professores de exatas têm pouca sensibilidade para explicar conceitos que, para eles, são óbvios. E, quando migramos de área, entender esses conceitos iniciais é essencial para construir uma base sólida para todos os outros mil conceitos que virão pela frente.
 
-Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação (supostamente tão simples) feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população *(ou seja, desenhar uma população com parâmetros conhecidos)* e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como os conceitos de parâmetros, estimadores e estimativas se conectam.
+Depois de buscar diferentes professores, videoaulas e livros para entender essa afirmação [supostamente tão simples] feita pela minha professora de Inferência, percebi algo valioso: um dos melhores caminhos para consolidar um bom raciocínio em estatística é simular dados de uma população (ou seja, desenhar uma população com parâmetros conhecidos) e observar como as amostras extraídas dessa população se comportam. Quando conseguimos visualizar, de forma concreta, aquilo que antes era apenas um conceito abstrato, tudo começa a fazer mais sentido. E é exatamente essa a proposta deste post: explicar, de maneira visual e prática, alguns conceitos que tanto me angustiaram lá atrás. Vamos ver, a partir de uma população fictícia, como as definições de parâmetros, estimadores e estimativas se conectam.
 
 # Introdução
 
 Antes de começar o mão na massa, vamos dar uns passos atrás e recapitular o objetivo da Inferência Estatística... 
 
-Imagine que você é líder de um país e precisa desenvolver políticas públicas voltadas ao trabalho informal. Para isso, entender alguns dados sobre como o trabalho informal se distribui pela população é essencial para orientar suas decisões e garantir que as medidas propostas sejam eficazes e bem direcionadas. Por exemplo, quantos habitantes do país possuem um trabalho informal? Quanto, em média, esses habitantes ganham mensalmente realizando atividaes informais? O trabalho informal é, em geral, a principal atividade das famílias?
+Imagine que você é líder de um país e precisa desenvolver políticas públicas voltadas ao trabalho informal. Para isso, entender alguns dados sobre como o trabalho informal se distribui pela população é essencial para orientar suas decisões e garantir que as medidas propostas sejam eficazes e bem direcionadas. Por exemplo, quantos habitantes do país possuem um trabalho informal? Quanto, em média, esses habitantes ganham mensalmente realizando atividades informais? O trabalho informal é, em geral, a principal atividade das famílias? Com as respostas dessas perguntas em mãos, fica mais fácil pra você, como tomador de decisão, saber para qual lado guiar as suas propostas sobre esse tema.
 
+Então, para obter as respostas das perguntas acima, você tem duas possibilidades: a primeira consiste em entrevistar toda a população acerca das perguntas mencionadas. Essa saída não nos deixaria dúvidas sobre como o trabalho informal se distribui entre os habitantes do nosso país; contudo, é uma alternativa complexa: imagine o tempo e o custo que seriam gastos para entrevistar todos os habitantes do nosso país! A outra possibilidade consiste em selecionar uma amostra dessa população e realizar as entrevistas, reduzindo drasticamente o custo e o tempo demandados para obter os dados que podem nos ajudar na tomada de decisão. Todavia, uma amostra da população não é a população... E lembre-se: você, como líder de um país, precisa pensar em políticas públicas que vão ajudar *todos* os habitantes!
 
+Então, como podemos, a partir de uma amostra, chegar em uma conclusão sobre a população? A resposta está na **Inferência Estatística**! De forma simplificada, a Inferência Estatística é o ramo da estatística responsável por tirar conclusões sobre uma população com base em informações extraídas de uma amostra. Dessa maneira, conseguimos estimar características de uma população utilizando somente um amostra, facilitando o processo de entendimento da população como um todo.
 
-Quando utilizamos Estatística Aplicada como tomadores de decisão, é fundamental entender as características da população sobre a qual queremos atuar, afinal, ao conhecer bem esse grupo, conseguimos escolher o melhor caminho a seguir. Imagine, por exemplo, que você é líder de um país e precisa desenvolver políticas públicas voltadas ao trabalho informal. Para isso, entender alguns dados sobre como o trabalho informal se distribui pela população é essencial para orientar suas decisões e garantir que as medidas propostas sejam eficazes e bem direcionadas. Por exemplo, quantos habitantes do país possuem um trabalho informal? Quanto, em média, esses habitantes ganham mensalmente realizando atividaes informais? O trabalho informal é, em geral, a principal atividade das famílias? Com essas respostas em mãos fica muito mais claro para você, tomador de decisão, saber quais ações, se forem tomadas, podem melhorar a situação da população do país como um todo.
-
-Para obter as respostas das perguntas acima, temos duas possibilidades: a primeira seria entrevistar toda a população em busca de respostas. Essa saída é, contudo, muito complexa: imagina o tempo gasto e o custo para entrevistar todos os habitantes daquele país?! A outra possibilidade consiste em selecionar uma amostra dessa população para as entrevistas, reduzindo drasticamento o custo/tempo demandado para chegar nos dados que podem ajudar na tomada de decisão. Todavia, uma amostra da população não é população... e lembre-se: você, como líder de um país, precisa pensar em políticas públicas que vão ajudar todos os habitantes! 
-
-Então, como podemos, a partir de uma amostra, chegar em uma conclusão sobre a população? A resposta está na Inferência Estatística! De forma simplificada, a Inferência Estatística é o ramo da estatística responsável por tirar conclusões sobre uma população com base em informações extraídas de uma amostra. Dessa maneira, conseguimos estimar características de uma população utilizando somente um amostra, facilitando o processo de entendimento da população como um todo.
-
-Como já disse acima, aprendi que para se entender conceitos abstratos em Estatística, nada melhor do que simularmos uma população e enxergar como os conceitos teóricos se materializam em um exemplo concreto. Pra isso, vamos continuar com exemplo de que precisamos entender como a renda obtida por trabalhos informais se distribui ao longo de uma população simulando o seguinte cenário: nosso país possui 1 milhão de habitantes com trabalho informal e a renda obtida por trabalhos informais desses habitantes vem de uma distribuição normal com média em R$2375 e desvio-padrão de R\$1000 
+Como já disse acima, aprendi que para se entender conceitos abstratos em estatística, nada melhor do que simular uma população para visualizar como os conceitos teóricos se materializam em um exemplo concreto. Para isso, vamos continuar com o problema já estabelecido de que você é o líder de um país e precisa entender como a renda obtida por trabalhos informais se distribui ao longo da população. Começaremos por simular a população desse país da seguinte maneita: o país possui 1 milhão de habitantes com trabalho informal e a renda obtida pelo trabalho informal desses habitantes vem de uma distribuição normal com média em R$2375 e desvio-padrão de R\$1000.
 
 ⚠️ *A distribuição normal não é a mais adequada para simular a renda de uma população que, na prática, costuma ser assimétrica e concentrada em faixas específicas. Contudo, para facilitar a compreensão inicial, vamos usá-la como ponto de partida.*
 
-Não vou entrar em detalhes sobre como amostrar essa popualaçao, entao vamos dar um salto de fé aqui e imaginar que conseguimos chegar em uma amostra altamente confiável dessa população de interesse. Para cada pessoa dessa amostra, computamos a renda média feita mensalmente através de trabalhos informais... e, com isso, chegamos em conclusão sobre a amostra... mas e aí, como conseguimos chegar em conclusões sobre a população?
-
-Vamos simular?
+Abaixo, temos o código usado para gerar nossa população e temos uma tabela mostrando um exemplo de 5 indivíduos da população gerada. (Considere a coluna "id" como um identificador único de cada indivíduo... como se fosse o CPF de cada pessoa, por exemplo.)
 
 ```{r echo = TRUE}
 #| code-fold: false
@@ -103,36 +97,44 @@ population |>
   )
 
 ```
-
-
-```{r}
-
-hist(population$informal_sallary)
-
-```
-
-Temos certeza da média populacional porque determinados ela: mean = 2375, sd = 1000. Imagina que retiramos uma amostr dessa população de 100 pessoas
+<br>
+O histograma a seguir nos mostra como é a distribuição do salário informal para todos os habitantes desse nosso país criado.
 
 ```{r}
 
-set.seed(123)
-sample_population <- population |> 
-  sample_n(
-    size = 100
+mean_pop <- mean(population$informal_sallary)
+
+population |> 
+  ggplot(
+    aes(
+      x = informal_sallary
+    )
+  ) +
+  geom_histogram() +
+  geom_vline(
+    aes(
+      xintercept = mean_pop
+    ), 
+    color = "red", 
+    linetype = "dashed", 
+    #linewidth = 1.2
+  ) +
+  theme_bw() +
+  labs(
+    title = "Distribuição do salário informal na população"
   )
 
-sample_population
-
 ```
+
+Sendo assim, se tivéssemos tempo e dinheiro para entrevistar todos os habitantes do nosso país, chegaríamos na conclusão de que a média do salário informal desses indivíduos é de **R\$`r round(mean(population$informal_sallary),2)`** (linha vermelha tracejada no gráfio acima), com um desvio-padrão de **R\$`r round(sd(population$informal_sallary),2)`**. Para começar a formalizar um pouco o que estamos vendo, temos uma primeira definição importante: a média e o desvio-padrão (e quaisquer outras medidas descritivas da população) são chamados de *parâmetros* da população. 
+
+> 🔎 *Parâmetros* de uma população são valores fixos e verdadeiros que descrevem características quantitativas dessa população. Eles representam medidas que resumem algum aspecto da população como um todo.
+
+Como, em geral, nunca saberemos o valor real de um parâmetro da população (a não ser que seja feita uma pesquisa em toda a população), o melhor que podemos fazer é utilizar técnicas de Inferência Estatística para estimar esse valor. Dessa maneira, a partir de uma amostra extraída dessa população, utilizamos algum *estimador* para obter um valor que imaginamos ser próximo o suficiente do valor real do parâmetro.
 
 ```{r}
 
-mean(sample_population$informal_sallary)
-
-```
-
-
-```{r}
+# código simulando a amostragem com estimador viesado e nao viesado.
 
 set.seed(123)
 
@@ -169,8 +171,6 @@ comparar_estimadores <- function(n_amostra, n_simulacoes = 1000) {
   )
 }
 
-# Executar comparação com amostras de tamanho 30
-comparar_estimadores(n_amostra = 30)
 
 
 ```
