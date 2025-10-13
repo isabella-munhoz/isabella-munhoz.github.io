@@ -256,8 +256,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id do indivíduo</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span>pop_size,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gerando os valores de salário informal, para uma população com média de 2375 e desvio-padrão de 1000</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">informal_sallary =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> pop_size, <span class="at">mean =</span> <span class="dv">2375</span>, <span class="at">sd =</span> <span class="dv">1000</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">informal_sallary =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> pop_size, <span class="at">mean =</span> <span class="dv">2375</span>, <span class="at">sd =</span> <span class="dv">500</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># substituindo possíveis valores negativos por 0 (nã0 faz sentido um salário negativo)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> population <span class="sc">|&gt;</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">informal_sallary =</span> <span class="fu">if_else</span>(informal_sallary <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, informal_sallary)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
@@ -274,23 +280,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">1814.524</td>
+<td style="text-align: right;">2094.762</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">2144.823</td>
+<td style="text-align: right;">2259.911</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">3933.708</td>
+<td style="text-align: right;">3154.354</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">2445.508</td>
+<td style="text-align: right;">2410.254</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">2504.288</td>
+<td style="text-align: right;">2439.644</td>
 </tr>
 </tbody>
 </table>
@@ -309,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Sendo assim, se tivéssemos tempo e dinheiro para entrevistar todos os habitantes do nosso país, chegaríamos na conclusão de que a média do salário informal desses indivíduos é de <strong>R$2374.48</strong> (linha vermelha tracejada no gráfio acima), com um desvio-padrão de <strong>R$999.93</strong>. Para começar a formalizar um pouco o que estamos vendo, temos uma primeira definição importante: a média e o desvio-padrão (e quaisquer outras medidas descritivas da população) são chamados de <em>parâmetros</em> da população.</p>
+<p>Sendo assim, se tivéssemos tempo e dinheiro para entrevistar todos os habitantes do nosso país, chegaríamos na conclusão de que a média do salário informal desses indivíduos é de <strong>R$2374.74</strong> (linha vermelha tracejada no gráfio acima), com um desvio-padrão de <strong>R$499.96</strong>. Para começar a formalizar um pouco o que estamos vendo, temos uma primeira definição importante: a média e o desvio-padrão (e quaisquer outras medidas descritivas da população) são chamados de <em>parâmetros</em> da população.</p>
 <blockquote class="blockquote">
 <p>🔎 <em>Parâmetros</em> de uma população são valores fixos e verdadeiros que descrevem características quantitativas dessa população. Eles representam medidas que resumem algum aspecto da população como um todo.</p>
 </blockquote>
