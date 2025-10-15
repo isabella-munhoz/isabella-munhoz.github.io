@@ -136,7 +136,9 @@ Sendo assim, se tivéssemos tempo e dinheiro para entrevistar todos os habitante
 
 > 🔎 *Parâmetros* de uma população são valores fixos e verdadeiros que descrevem características quantitativas dessa população. Eles representam medidas que resumem algum aspecto da população como um todo.
 
-Como, em geral, nunca saberemos o valor real de um parâmetro da população (a não ser que seja feita uma pesquisa em toda a população), o melhor que podemos fazer é utilizar técnicas de Inferência Estatística para estimar esse valor. Dessa maneira, a partir de uma amostra extraída dessa população, utilizamos algum *estimador* para obter um valor que imaginamos ser próximo o suficiente do valor real do parâmetro.
+Como, em geral, nunca saberemos o valor real de um parâmetro da população (a não ser que seja feita uma pesquisa em toda a população), o melhor que podemos fazer é utilizar técnicas de Inferência Estatística para estimar esse valor. Dessa maneira, a partir de uma amostra extraída dessa população, utilizamos algum *estimador* para obter um valor que imaginamos ser próximo o suficiente do valor real do parâmetro. Aqui, chegamos em outra definição:
+
+> 🔎 *Estimador* é uma regra ou fórmula que usamos para estimar um parâmetro desconhecido de uma população a partir dos dados de uma amostra. Dessa maneira, um *parâmetro* é um valor que descreve uma população enquanto o *estimador* é a regra que utiliza dados amostrais para tentar descobrir o valor desse parâmetro.
 
 ```{r}
 

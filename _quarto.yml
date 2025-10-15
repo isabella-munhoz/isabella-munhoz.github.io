@@ -14,6 +14,9 @@ website:
         text: Posts
       - href: about.qmd
         text: About
+    posts:
+      listings:
+        exclude-drafts: true # para remover os posts de rascunho da pagina inicial quando renderiza o site
 
 format:
   html:

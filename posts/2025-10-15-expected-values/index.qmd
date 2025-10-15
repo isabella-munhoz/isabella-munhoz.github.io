@@ -1,0 +1,41 @@
+---
+title: "O que podemos esperar do não visto..."
+description: "(e isso não é sobre tarot)"
+author: Isabella Munhoz
+date: 2025-10-15
+#categories: [categoria-teste] # self-defined categories
+image: 2025-10-15-thumb.jpg
+draft: false # true: post não aparece no site (é considerado rascunho)
+---
+
+::: {style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 1rem;"}
+<img src="2025-10-15-thumb.jpg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;"/>
+:::
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+
+my_options <- options(
+  scipen = 999
+)
+
+mk_tbl <- function(data, table_title) {
+  data |> 
+    kable(caption = table_title, format = "html") |> 
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+      full_width = FALSE,
+      position = "center"
+    ) |> 
+    # para gerar uma tabela que não ocupe a página toda e fique no meio
+    scroll_box(width = "60%", extra_css = "margin: 0 auto;") 
+}
+
+```
+
+# Motivação
+
+bla bla bla
