@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Isabella Munhoz">
 <meta name="dcterms.date" content="2025-10-15">
-<meta name="description" content="(e isso não é sobre tarot)">
+<meta name="description" content="(e isso não é sobre tarot ou astrologia)">
 
 <title>O que podemos esperar do não visto… – Isabella Munhoz</title>
 <style>
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,15 +68,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4968d28af72d4e5a34172c9bc5ef961b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3b7f4aff7acac744aa1d596ce5db2ede.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,12 +121,43 @@ ul.task-list li input[type="checkbox"] {
         color: #FFFFFF;
       }
 </style>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -133,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">O que podemos esperar do não visto…</h1>
                   <div>
         <div class="description">
-          (e isso não é sobre tarot)
+          (e isso não é sobre tarot ou astrologia)
         </div>
       </div>
                 </div>
@@ -168,7 +235,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação">Motivação</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#que-os-jogos-comecem" id="toc-que-os-jogos-comecem" class="nav-link" data-scroll-target="#que-os-jogos-comecem">Que os jogos comecem</a></li>
+  <li><a href="#um-passo-atrás" id="toc-um-passo-atrás" class="nav-link" data-scroll-target="#um-passo-atrás">Um passo atrás…</a></li>
+  <li><a href="#valor-esperado" id="toc-valor-esperado" class="nav-link" data-scroll-target="#valor-esperado">Valor esperado</a>
+  <ul class="collapse">
+  <li><a href="#valor-esperado-em-diferentes-distribuições" id="toc-valor-esperado-em-diferentes-distribuições" class="nav-link" data-scroll-target="#valor-esperado-em-diferentes-distribuições">Valor esperado em diferentes distribuições</a></li>
+  </ul></li>
+  <li><a href="#a-melhor-aposta" id="toc-a-melhor-aposta" class="nav-link" data-scroll-target="#a-melhor-aposta">A melhor aposta</a></li>
   </ul>
 </nav>
     </div>
@@ -182,245 +256,770 @@ ul.task-list li input[type="checkbox"] {
 <div style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 1rem;">
 <p><img src="2025-10-15-thumb.jpg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;"></p>
 </div>
-<section id="motivação" class="level1">
-<h1>Motivação</h1>
-<p>bla bla bla</p>
+<section id="introdução" class="level1">
+<h1>Introdução</h1>
+<p>Vamos começar imaginando um mundo paralelo: um lugar com 1 milhão de habitantes. Como conhecemos cada pessoa desse mundo, sabemos exatamente a resposta deles para uma das perguntas mais importantes já feitas: <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>.</p>
+<p>Claro que a resposta certa seria <strong>SIM</strong>, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor, enquanto 700 mil discordam (eu sei… as pessoas têm alguma resistência com geminianos… completamente injustificada, aliás).</p>
+<p>A tabela abaixo apresenta 10 habitantes do mundo que criamos. A coluna <strong>id</strong> representa o identificador de cada indivíduo (como se fosse o CPF), enquanto a coluna <strong>answer</strong> indica se aquela pessoa acredita que Gêmeos é o melhor signo do zodíaco (0 = “não”, 1 = “sim”).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">paste0</span>(<span class="st">"id_"</span>, <span class="fu">sample.int</span>(n, n)), <span class="co"># ids aleatórios dos habitantes do nosso mundo</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">answer =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">800000</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">200000</span>)) <span class="co"># resposta</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>population <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="dv">10</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mk_tbl</span>(<span class="at">table_title =</span> <span class="st">"Exemplo da população gerada"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Exemplo da população gerada</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">id_998529</td>
+<td style="text-align: center; width: 50%;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">id_441537</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">id_118524</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">id_136978</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">id_709067</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">id_992969</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">id_357943</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">id_218443</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">id_150396</td>
+<td style="text-align: center; width: 50%;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">id_496701</td>
+<td style="text-align: center; width: 50%;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> Visualmente, o gráfico abaixo mostra quantos habitantes do nosso mundo acreditam (ou não) que Gêmeos é o melhor signo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Agora imagine duas amigas que vivem nesse mundo e são apaixonadas por signos (e por jogos também). Vamos chamá-las de Ana e Bia. Em um certo dia, Bia faz uma proposta para Ana:</p>
+<p>👩 <strong>Vamos sair agora e perguntar para a primeira pessoa que passar se ela acha que Gêmeos é o melhor signo do zodíaco. Se ela disser SIM, eu te dou 10 reais. Se disser NÃO, você me dá 1 real.</strong></p>
+<p>O questionamento é: <em>Ana deveria aceitar esse jogo?</em></p>
+<p>Sabemos que apenas 20% da população acredita que Gêmeos é o melhor signo. Ou seja, é mais provável que Ana encontre alguém que responda não (e, com isso, acabe perdendo 1 real)… Mas, se por sorte ela topar com alguém que responda sim, ela ganha 10 reais de uma vez…</p>
+<p>Ana aceita a brincadeira, mas tenta melhorar suas chances: ela propõe que, em vez de perguntar apenas para uma pessoa, perguntem para 10 pessoas.</p>
+<p>A regra segue sendo a mesma:</p>
+<ul>
+<li><p>para cada pessoa que disser que Gêmeos não é o melhor signo, Ana paga 1 real para Bia;</p></li>
+<li><p>para cada pessoa que disser que Gêmeos é o melhor signo, Ana recebe 10 reais da Bia.</p></li>
+</ul>
+<p><em>Será que Ana vai acabar mesmo ganhando dinheiro com esse jogo?</em></p>
+</section>
+<section id="que-os-jogos-comecem" class="level1">
+<h1>Que os jogos comecem</h1>
+<p>É claro que, em um jogo de sorte, o resultado final depende justamente da SORTE. Então, na prática, só jogando para saber se a Ana sairia ganhando ou perdendo dinheiro. Mas existe uma forma de modelar esse cenário estatisticamente e estimar quanto ela tende a ganhar (ou perder) em média.</p>
+<p>Como conhecemos a distribuição da população (20% gostam de geminianos e 80% não gostam), podemos imaginar o seguinte: a cada 10 pessoas abordadas, espera-se que 2 respondam que gostam do signo de Gêmeos e 8 digam que não gostam.</p>
+<p>Com isso:</p>
+<ul>
+<li><p>Ana ganha 20 reais pelas duas respostas “sim”;</p></li>
+<li><p>Ana perde 8 reais pelas oito respostas “não”.</p></li>
+</ul>
+<p>Ou seja, <em>o ganho esperado é de (+20 -8) 12 reais.</em></p>
+<p>Como geramos a população desse mundo fictício, vamos ver a aposta acontecendo na prática?</p>
+<p>Abaixo, amostramos 10 pessoas da nossa população (ou seja, as 10 pessoas aleatórias que Ana e Bia encontrariam na rua) e calculamos quanto a Ana teria ganhado nesse cenário.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Amostra 1</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 33%;">0</td>
+<td style="text-align: center; width: 33%;">6</td>
+<td style="text-align: center; width: 33%;">-6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 33%;">1</td>
+<td style="text-align: center; width: 33%;">4</td>
+<td style="text-align: center; width: 33%;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> Se o jogo tivesse acontecido com a amostra acima, 6 pessoas teriam respondido que não gostam de Gêmeos e 4 teriam dito que gostam. Assim, Ana <strong>ganharia 40 reais</strong> pelas quatro respostas “sim” e <strong>perderia 6 reais</strong> pelas seis respostas “não”. No total, ela ficaria com 34 reais (um valor superior aos 12 reais que estávamos esperando).</p>
+<p>Mas… e se tivéssemos retirado outra amostra da população (exemplo abaixo)?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Amostra 2</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 33%;">0</td>
+<td style="text-align: center; width: 33%;">8</td>
+<td style="text-align: center; width: 33%;">-8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 33%;">1</td>
+<td style="text-align: center; width: 33%;">2</td>
+<td style="text-align: center; width: 33%;">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> Se as pessoas selecionadas ao acaso fossem as da amostra acima, Ana <strong>perderia 8 reais</strong> pelas oito pessoas que não gostam de Gêmeos e <strong>ganharia 20 reais</strong> pelas duas pessoas que gostam. Assim, seu saldo final seria de <strong>12 reais</strong> (exatamente igual ao valor que esperávamos que ela ganhasse).</p>
+<p>Até o momento, parece que Ana fez uma boa escolha ao aceitar essa aposta, pois, em dois cenários simulados, ela teria ganhado dinheiro!</p>
+<p>Vamos avaliar mais um cenário só pra ver o que aconteceria nele?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Amostra 3</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 33%;">0</td>
+<td style="text-align: center; width: 33%;">10</td>
+<td style="text-align: center; width: 33%;">-10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> Nesse último cenário, todas as pessoas entrevistadas diriam que não gostam do signo de gêmeos, e, com isso, Ana teria <strong>perdido 10 reais!!!</strong></p>
+<p>Bom, é óbvio que o que realmente vai acontecer vai depender da sorte… mas, pelo que notamos das amostras selecionadas acima, em 2 cenários a aposta teria sido positiva pra Ana e em 1 cenário ela teria perdido dinheiro.</p>
+<p>Como estamos em um ambiente de imaginação (e temos a população interia desse mundo), podemos extrair inúmeas e inúmeras amostras para ver qual seria o cenário mais comum. Para isso, retiramos 1000 amostras da população e, para cada amostra, calculamos qual o retorno financeiro cada amostra geraria para Ana. Na tabela abaixo, temos o exemplo de 10 dessas 1000 amostras.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Balanço financeiro considerando 10000 amostras</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">sample_number</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer_0</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">answer_1</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 25%;">1</td>
+<td style="text-align: center; width: 25%;">8</td>
+<td style="text-align: center; width: 25%;">2</td>
+<td style="text-align: center; width: 25%;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 25%;">2</td>
+<td style="text-align: center; width: 25%;">8</td>
+<td style="text-align: center; width: 25%;">2</td>
+<td style="text-align: center; width: 25%;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 25%;">3</td>
+<td style="text-align: center; width: 25%;">9</td>
+<td style="text-align: center; width: 25%;">1</td>
+<td style="text-align: center; width: 25%;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 25%;">4</td>
+<td style="text-align: center; width: 25%;">6</td>
+<td style="text-align: center; width: 25%;">4</td>
+<td style="text-align: center; width: 25%;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 25%;">5</td>
+<td style="text-align: center; width: 25%;">7</td>
+<td style="text-align: center; width: 25%;">3</td>
+<td style="text-align: center; width: 25%;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 25%;">6</td>
+<td style="text-align: center; width: 25%;">8</td>
+<td style="text-align: center; width: 25%;">2</td>
+<td style="text-align: center; width: 25%;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 25%;">7</td>
+<td style="text-align: center; width: 25%;">9</td>
+<td style="text-align: center; width: 25%;">1</td>
+<td style="text-align: center; width: 25%;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 25%;">8</td>
+<td style="text-align: center; width: 25%;">7</td>
+<td style="text-align: center; width: 25%;">3</td>
+<td style="text-align: center; width: 25%;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 25%;">9</td>
+<td style="text-align: center; width: 25%;">9</td>
+<td style="text-align: center; width: 25%;">1</td>
+<td style="text-align: center; width: 25%;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 25%;">10</td>
+<td style="text-align: center; width: 25%;">9</td>
+<td style="text-align: center; width: 25%;">1</td>
+<td style="text-align: center; width: 25%;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>Podemos notar nesses 10 exemplos que em alguns cenários Ana ganha mais dinheiro do que em outros cenários. Como olhar dados em tabelas não nos ajudam a tirar grandes conclusmnões, o</p>
+<p>O gráfico abaixo nos ajuda a visualizar o balanço financeiro de todas as 1000 amostras que extraímos acima.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pelo gráfico acima, observamos que, entre as 5.000 amostras simuladas, a maioria (cerca de 1.500 casos) resultou em um ganho de <strong>12 reais</strong> para a Ana. O mais interessante é que esse resultado confirma exatamente a conta que fizemos lá em cima: se sabemos que 20% dos indivíduos da população respondem “sim” e 80% respondem “não”, o ganho esperado fica em <strong>12 reais</strong>.</p>
+<p>Esse tal “ganho esperado” que viemos calculando até então pode ser entedido formalmente na estatística através do conceito de <em>valor esperado</em>… Agora que construímos uma base de conhecimento intuitiva através do exemplo da aposta, podemos nos aprofundar nos conceitos com mais cuidado.</p>
+</section>
+<section id="um-passo-atrás" class="level1">
+<h1>Um passo atrás…</h1>
+<p>Antes de falar especificamente sobre valor esperado, é importante definirmos dois conceitos fundamentais em estatística: <strong>experimento aleatório</strong> e <strong>variáveis aleatórias</strong>.</p>
+<p>Um <strong>experimento aleatório</strong> é qualquer processo cujo resultado não pode ser previsto com certeza antes de acontecer. Embora não saibamos exatamente qual será o desfecho, conhecemos o conjunto de possibilidades. Exemplos comuns incluem escolher uma pessoa ao acaso e medir sua altura, observar quanto tempo um ônibus demora para chegar a determinado local ou registrar a temperatura de um dia específico. Realizamos experimentos aleatórios para estudar fenômenos que envolvem incerteza: queremos compreender padrões, calcular probabilidades e prever comportamentos futuros, mesmo quando cada resultado individual é imprevisível.</p>
+<p>Para analisar os resultados de um experimento aleatório (que muitas vezes não são numéricos), utilizamos a ideia de <strong>variável aleatória</strong>. Uma variável aleatória é uma regra que transforma cada resultado do experimento em um número: essa regra recebe como entrada um elemento do experimento (uma pessoa, um dia, uma observação) e devolve um valor numérico que representa alguma característica desse elemento, como altura, tempo de atraso, quantidade de chuva ou um código associado a uma categoria. Por exemplo, em um experimento que consiste em observar o resultado dos lançamentos de uma moeda, podemos representar o experimento matematicamente como o valor 1 para toda vez que sair “cara” e 0 para toda vez que sair “coroa”. Essa transformação é essencial porque permite usar ferramentas matemáticas como médias, variâncias e probabilidades para descrever o fenômeno. A variável aleatória funciona, portanto, como uma ponte que traduz o resultado incerto do mundo real para um formato numérico que podemos analisar.</p>
+<p>No exemplo da aposta entre Ana e Bia, o <strong>experimento aleatório</strong> consiste em entrevistar 10 pessoas e registrar a resposta de cada pessoa à pergunta <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>. Embora não saibamos antecipadamente qual será a resposta de cada entrevistado, sabemos que cada pessoa pode responder apenas “sim” ou “não”. Isso torna o experimento aleatório: mesmo conhecendo os possíveis resultados, a combinação exata de respostas observadas (e, portanto, o ganho financeiro final) só é revelada ao concluir as entrevistas. A <strong>variável aleatória</strong>, nesse caso, é a regra que traduz cada resposta a um valor numérico associado ao retorno financeiro: se a resposta for “sim”, o retorno financeiro é +10, se a resposta for “não” o retorno financeiro é -1. Essa transformação converte um resultado qualitativo (“sim” ou “não”) em um número, permitindo calcular médias, probabilidades e, principalmente, o ganho final. Quando somamos os valores atribuídos às 10 respostas obtemos o ganho total da aposta, que depende diretamente das respostas observadas no experimento.</p>
+<p>As variáveis aleatórias se tornam especialmente interessantes porque, apesar de dependerem do acaso, elas possuem uma característica chamada <strong>valor esperado</strong>, que funciona como uma medida do resultado médio que esperaríamos observar se o experimento fosse repetido muitas vezes. No contexto da aposta entre Ana e Bia, o valor esperado nos ajuda a entender qual seria o ganho financeiro mais frequente considerando as regras da aposta, independentemente das oscilações naturais que podem ocorrer em cada conjunto de entrevistas. Essa ideia de resumir o comportamento médio (“mais frequente”) de algo incerto, é um dos motivos pelos quais variáveis aleatórias são tão úteis, e é exatamente o que exploraremos na próxima seção.</p>
+</section>
+<section id="valor-esperado" class="level1">
+<h1>Valor esperado</h1>
+<p>Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado de um jeito mais abrangente possível…</p>
+<p>A primeira definição que temos é que o <strong>valor esperado é o resultado médio que esperamos obter se pudéssemos repetir um experimento aleatório muitas e muitas vezes, sob as mesmas condições</strong>. No mundo real, contudo, a maior parte dos experimentos aleatórios acontece apenas uma vez: no exemplo da aposta entre Ana e Bia, a entrevista com as 10 pessoas ocorre uma única vez, e são essas respostas que determinam se Ana ganhará ou perderá dinheiro. Ainda assim, podemos imaginar o que aconteceria <strong>em média</strong> se a mesma aposta fosse repetida inúmeras vezes, cada vez com 10 pessoas escolhidas ao acaso. O valor esperado é justamente esse resultado típico: o retorno médio que apareceria com mais regularidade ao longo de muitas repetições hipotéticas do experimento.</p>
+<p>No gráfico “Distribuição do retorno financeiro para as amostras geradas” (replicado abaixo), é exatamente isso que vemos: ao repetirmos o experimento 10000 vezes, o retorno financeiro mais frequente é o de 12 reais. A linha vermelha tracejada indica a média do retorno financeiro de todos os experimentos e tem o valor exato de <strong>11.98</strong> (muito próximo de 12!).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Outra maneira de calcular o valor esperado é mostrada na fórmula abaixo. Ela nada mais é do que a versão matemática (mais organizada e elegante) do cálculo intuitivo que fizemos no início deste post.</p>
+<p><span class="math display">\[
+\mathbb{E}[X] = \sum_{i=1}^n x_i p_i
+\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X]\)</span> representa o valor esperado da variável aleatória <span class="math inline">\(X\)</span>;</li>
+<li><span class="math inline">\(x_i\)</span> representa o valor que a variável aleatória <span class="math inline">\(X\)</span> pode assumir;</li>
+<li><span class="math inline">\(p_i\)</span> representa a probabilidade da variável aleatória assumir aquele valor.</li>
+</ul>
+<p>Considerando o exemplo da nossa aposta, temos que a nossa variável aleatória <span class="math inline">\(X\)</span> pode ser:</p>
+<p><span class="math display">\[
+X =
+\begin{cases}
+10, &amp; \text{se responder “sim”} \\
+-1, &amp; \text{se responder “não”}
+\end{cases}
+\]</span></p>
+<p>Como sabemos que 20% da população responderia “sim” para nossa pergunta, podemos transformar essa informação em probabilidade. Uma porcentagem nada mais é do que uma razão sobre 100. Assim, <span class="math inline">\(20\% = \frac{20}{100}\)</span>. Como probabilidades são representadas por valores ente 0 e 1, basta dividir 20 por 100, obtendo 0.2. Portanto, a probabilidade de um indivíduo escolhido aleatoriamente responder “sim” é <span class="math inline">\({P}(\text{sim}) = 0.20\)</span>. De forma análoga, sabemos que a probabilidade de um indivíduo escolhido aleatoriamente responder “não” é <span class="math inline">\({P}(\text{não}) = 0.80\)</span>.</p>
+<p>Usando a fórmula do valor esperado, temos:</p>
+<p><span class="math display">\[
+\mathbb{E}[X] \;=\; \sum x_i p_i \;=\; 10\cdot 0.20 + (-1)\cdot 0.80
+\]</span> <span class="math display">\[
+\mathbb{E}[X] = 2 - 0{.}8 = 1{.}20
+\]</span></p>
+<p>Isso significa que, em média, cada pessoa entrevistada gera um ganho esperado de 1.20 reais. Como a aposta envolve 10 pessoas, o valor esperado do ganho total é:</p>
+<p><span class="math display">\[
+\mathbb{E}[\text{ganho total}] = 10 \times \mathbb{E}[X] = 10 \times 1{.}20 = 12\,\text{reais}
+\]</span></p>
+<p>Esse cálculo teórico do valor esperado coincide exatamente com o resultado obtido de forma empírica nos experimentos realizados. Ou seja, quando repetimos o experimento muitas vezes (entrevistando grupos de 10 pessoas e registrando o ganho final) observamos que a média dos ganhos experimentais se aproxima do valor previsto pela fórmula do valor esperado. Isso acontece porque o valor esperado representa justamente a média de longo prazo de um experimento aleatório, e, portanto, quando acumulamos evidências empíricas suficientes, o comportamento observado se alinha ao que a teoria prevê.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_balance
+        &lt;dbl&gt;
+1        1.20</code></pre>
+</div>
+</div>
+<section id="valor-esperado-em-diferentes-distribuições" class="level2">
+<h2 class="anchored" data-anchor-id="valor-esperado-em-diferentes-distribuições">Valor esperado em diferentes distribuições</h2>
+</section>
+</section>
+<section id="a-melhor-aposta" class="level1">
+<h1>A melhor aposta</h1>
+<p>blá blá blá</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>A intuição: média ponderada pelos resultados possíveis</li>
+</ol>
+<p>Explique que o valor esperado é o “resultado médio” de um experimento aleatório, ponderado pelas probabilidades de cada resultado.</p>
+<p>Mostre que não é o resultado que ocorre de verdade, mas o valor médio que se espera em longo prazo.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                          medida       valor
+1    Média empírica da população 1.650074293
+2         Valor esperado teórico 1.648721271
+3 Diferença (empírica - teórico) 0.001353022</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           descricao          valor
+1        Média empírica da população    1.650074293
+2 Valor esperado teórico (LogNormal)    1.648721271
+3     Diferença (empírica - teórico)    0.001353022
+4         Número de amostras geradas 1000.000000000
+5            Tamanho de cada amostra   50.000000000
+6         Média das médias amostrais    1.644542521
+7 Desvio padrão das médias amostrais    0.305349731</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>--- Distribuição Normal (N = 10000000 ) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FÓRMULA TEÓRICA: mu = mu</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média Populacional (TEÓRICA): 50 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média Amostral (SIMULADA): 50.00475 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--- Distribuição Beta (N = 10000000 ) ---</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FÓRMULA TEÓRICA: mu = alpha / (alpha + beta)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média Populacional (TEÓRICA): 0.2857143 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média Amostral (SIMULADA): 0.2857716 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2857716</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2645177</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>=================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                VALOR ESPERADO (MÉDIA POPULACIONAL) </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A. DISTRIBUIÇÃO NORMAL (Parâmetros: mu = 50, sigma = 10)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-----------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fórmula Teórica do Valor Esperado (E[X]): E[X] = mu</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cálculo Teórico do Valor Esperado (E[X]): 50 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B. DISTRIBUIÇÃO BETA (Parâmetros: alpha = 2, beta = 5)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-----------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fórmula Teórica do Valor Esperado (E[X]): E[X] = alpha / (alpha + beta)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cálculo Teórico do Valor Esperado (E[X]): 0.2857143  (ou 2/7)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Comparação (Teórico vs. Simulado):</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Normal - Teórico: 50 | Simulada: 50.00475 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Beta   - Teórico: 0.2857143 | Simulada: 0.2857716 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=================================================================</code></pre>
+</div>
+</div>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -428,185 +1027,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 

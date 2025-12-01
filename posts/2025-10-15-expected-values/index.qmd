@@ -1,6 +1,6 @@
 ---
 title: "O que podemos esperar do não visto..."
-description: "(e isso não é sobre tarot)"
+description: "(e isso não é sobre tarot ou astrologia)"
 author: Isabella Munhoz
 date: 2025-10-15
 #categories: [categoria-teste] # self-defined categories
@@ -23,19 +23,752 @@ my_options <- options(
 )
 
 mk_tbl <- function(data, table_title) {
-  data |> 
-    kable(caption = table_title, format = "html") |> 
+  
+  k <- data |>
+    kable(
+      caption = table_title,
+      format = "html",
+      align = rep("c", ncol(data))   # centraliza todas as colunas
+    ) |>
     kable_styling(
       bootstrap_options = c("striped", "hover", "condensed", "responsive"),
       full_width = FALSE,
       position = "center"
-    ) |> 
-    # para gerar uma tabela que não ocupe a página toda e fique no meio
-    scroll_box(width = "60%", extra_css = "margin: 0 auto;") 
+    )
+  
+  # força cada coluna a ter a mesma largura
+  n_cols <- ncol(data)
+  col_width <- sprintf("%.0f%%", 100 / n_cols)  # divide igualmente
+  
+  for (i in seq_len(n_cols)) {
+    k <- k |>
+      column_spec(
+        i,
+        width = col_width,
+        extra_css = "text-align: center;"   # sem bordas verticais
+      )
+  }
+  
+  k |> 
+    scroll_box(width = "80%", extra_css = "margin: 0 auto;")
 }
 
 ```
 
-# Motivação
+# Introdução
 
-bla bla bla
+Vamos começar imaginando um mundo paralelo: um lugar com 1 milhão de habitantes. Como conhecemos cada pessoa desse mundo, sabemos exatamente a resposta deles para uma das perguntas mais importantes já feitas: *“Gêmeos é o melhor signo do zodíaco, né?”*.
+
+Claro que a resposta certa seria **SIM**, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor, enquanto 700 mil discordam (eu sei... as pessoas têm alguma resistência com geminianos... completamente injustificada, aliás).
+
+A tabela abaixo apresenta 10 habitantes do mundo que criamos. A coluna **id** representa o identificador de cada indivíduo (como se fosse o CPF), enquanto a coluna **answer** indica se aquela pessoa acredita que Gêmeos é o melhor signo do zodíaco (0 = “não”, 1 = “sim”).
+
+```{r echo = TRUE}
+
+set.seed(123)
+n <- 1e6
+population <- tidyr::tibble(
+  id = paste0("id_", sample.int(n, n)), # ids aleatórios dos habitantes do nosso mundo
+  answer = c(rep(0, 800000), rep(1, 200000)) # resposta
+)
+
+set.seed(123)
+population |> 
+  slice_sample(
+    n = 10
+  ) |> 
+  mk_tbl(table_title = "Exemplo da população gerada")
+
+```
+<br>
+Visualmente, o gráfico abaixo mostra quantos habitantes do nosso mundo acreditam (ou não) que Gêmeos é o melhor signo.
+
+```{r}
+
+population |> 
+  summarise(
+    n = n(),
+    .by = c(answer)
+  ) |>
+  mutate(
+    perc = n / sum(n) * 100
+  ) |> 
+  ggplot(
+    aes(
+      x = factor(answer),
+      y = n,
+      fill = factor(answer)
+    )
+  ) +
+  geom_bar(
+    stat = "identity"
+  ) +
+  geom_text(
+    aes(label = sprintf("%.1f%%", perc)),
+    vjust = -0.3,
+    size = 3
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    x = "resposta",
+    y = "quantidade de habitantes",
+    title = "Gêmeos é o melhor signo do zodíaco?"
+  )
+
+```
+
+Agora imagine duas amigas que vivem nesse mundo e são apaixonadas por signos (e por jogos também). Vamos chamá-las de Ana e Bia.
+Em um certo dia, Bia faz uma proposta para Ana:
+
+👩 **Vamos sair agora e perguntar para a primeira pessoa que passar se ela acha que Gêmeos é o melhor signo do zodíaco. Se ela disser SIM, eu te dou 10 reais. Se disser NÃO, você me dá 1 real.**
+
+O questionamento é: *Ana deveria aceitar esse jogo?*
+
+Sabemos que apenas 20% da população acredita que Gêmeos é o melhor signo. Ou seja, é mais provável que Ana encontre alguém que responda não (e, com isso, acabe perdendo 1 real)... Mas, se por sorte ela topar com alguém que responda sim, ela ganha 10 reais de uma vez...
+
+Ana aceita a brincadeira, mas tenta melhorar suas chances: ela propõe que, em vez de perguntar apenas para uma pessoa, perguntem para 10 pessoas.
+
+A regra segue sendo a mesma:
+
+- para cada pessoa que disser que Gêmeos não é o melhor signo, Ana paga 1 real para Bia;
+
+- para cada pessoa que disser que Gêmeos é o melhor signo, Ana recebe 10 reais da Bia.
+
+*Será que Ana vai acabar mesmo ganhando dinheiro com esse jogo?*
+
+# Que os jogos comecem
+
+É claro que, em um jogo de sorte, o resultado final depende justamente da SORTE. Então, na prática, só jogando para saber se a Ana sairia ganhando ou perdendo dinheiro. Mas existe uma forma de modelar esse cenário estatisticamente e estimar quanto ela tende a ganhar (ou perder) em média.
+
+Como conhecemos a distribuição da população (20% gostam de geminianos e 80% não gostam), podemos imaginar o seguinte: a cada 10 pessoas abordadas, espera-se que 2 respondam que gostam do signo de Gêmeos e 8 digam que não gostam.
+
+Com isso:
+
+- Ana ganha 20 reais pelas duas respostas “sim”;
+
+- Ana perde 8 reais pelas oito respostas “não”.
+
+Ou seja, *o ganho esperado é de (+20 -8) 12 reais.*
+
+Como geramos a população desse mundo fictício, vamos ver a aposta acontecendo na prática?
+
+Abaixo, amostramos 10 pessoas da nossa população (ou seja, as 10 pessoas aleatórias que Ana e Bia encontrariam na rua) e calculamos quanto a Ana teria ganhado nesse cenário.
+
+```{r}
+
+set.seed(1991)
+smp <- population |> 
+  sample_n(
+    size = 10
+  )
+
+smp |> 
+  summarise(
+    n = n(),
+    .by = c(answer)
+  ) |> 
+  mutate(
+    balance = case_when(
+      answer == 0 ~ n * (-1),
+      answer == 1 ~ n * (+10)
+    )
+  ) |> 
+  arrange(
+    answer 
+  ) |> 
+  mk_tbl(
+    table_title = "Amostra 1"
+  )
+
+```
+<br>
+Se o jogo tivesse acontecido com a amostra acima, 6 pessoas teriam respondido que não gostam de Gêmeos e 4 teriam dito que gostam. Assim, Ana **ganharia 40 reais** pelas quatro respostas “sim” e **perderia 6 reais** pelas seis respostas “não”. No total, ela ficaria com 34 reais (um valor superior aos 12 reais que estávamos esperando).
+
+Mas... e se tivéssemos retirado outra amostra da população (exemplo abaixo)?
+
+```{r}
+
+set.seed(22)
+smp <- population |> 
+  sample_n(
+    size = 10
+  )
+
+smp |> 
+  summarise(
+    n = n(),
+    .by = c(answer)
+  ) |> 
+  mutate(
+    balance = case_when(
+      answer == 0 ~ n * (-1),
+      answer == 1 ~ n * (+10)
+    )
+  ) |>
+  arrange(
+    answer 
+  ) |> 
+  mk_tbl(
+    table_title = "Amostra 2"
+  )
+
+```
+<br>
+Se as pessoas selecionadas ao acaso fossem as da amostra acima, Ana **perderia 8 reais** pelas oito pessoas que não gostam de Gêmeos e **ganharia 20 reais** pelas duas pessoas que gostam. Assim, seu saldo final seria de **12 reais** (exatamente igual ao valor que esperávamos que ela ganhasse).
+
+Até o momento, parece que Ana fez uma boa escolha ao aceitar essa aposta, pois, em dois cenários simulados, ela teria ganhado dinheiro!
+
+Vamos avaliar mais um cenário só pra ver o que aconteceria nele?
+
+```{r}
+
+set.seed(12)
+smp <- population |> 
+  sample_n(
+    size = 10
+  )
+
+smp |> 
+  summarise(
+    n = n(),
+    .by = c(answer)
+  ) |> 
+  mutate(
+    balance = case_when(
+      answer == 0 ~ n * (-1),
+      answer == 1 ~ n * (+10)
+    )
+  ) |>
+  arrange(
+    answer 
+  ) |> 
+  mk_tbl(
+    table_title = "Amostra 3"
+  )
+
+```
+<br>
+Nesse último cenário, todas as pessoas entrevistadas diriam que não gostam do signo de gêmeos, e, com isso, Ana teria **perdido 10 reais!!!**
+
+Bom, é óbvio que o que realmente vai acontecer vai depender da sorte... mas, pelo que notamos das amostras selecionadas acima, em 2 cenários a aposta teria sido positiva pra Ana e em 1 cenário ela teria perdido dinheiro. 
+
+Como estamos em um ambiente de imaginação (e temos a população interia desse mundo), podemos extrair inúmeas e inúmeras amostras para ver qual seria o cenário mais comum. Para isso, retiramos 1000 amostras da população e, para cada amostra, calculamos qual o retorno financeiro cada amostra geraria para Ana. Na tabela abaixo, temos o exemplo de 10 dessas 1000 amostras.
+
+```{r}
+
+set.seed(123)
+n_samples <- purrr::map_df(
+  1:10000, ~{
+    smp <- population |> sample_n(size = 10)
+    balance <- (sum(smp$answer == 0) * (-1)) + (sum(smp$answer == 1) * (+10))
+    tibble(
+      sample_number = .x,
+      answer_0 = sum(smp$answer == 0),
+      answer_1 = sum(smp$answer == 1),
+      balance = balance
+    )
+  }
+)
+
+set.seed(8)
+n_samples |> 
+  slice_head(
+    n = 10
+  ) |> 
+  mk_tbl(
+    table_title = "Balanço financeiro considerando 10000 amostras"
+  )
+
+```
+<br>
+
+
+Podemos notar nesses 10 exemplos que em alguns cenários Ana ganha mais dinheiro do que em outros cenários. Como olhar dados em tabelas não nos ajudam a tirar grandes conclusmnões, o 
+
+O gráfico abaixo nos ajuda a visualizar o balanço financeiro de todas as 1000 amostras que extraímos acima.
+
+```{r}
+
+x_values <- unique(n_samples$balance)
+n_samples |> 
+  ggplot(
+    aes(
+      x = balance
+    )
+  ) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(breaks = x_values) +
+  theme_minimal() +
+  labs(
+    title = "Distribuição do retorno financeiro para as amostras geradas",
+    x = "retorno financeiro (R$)",
+    y = "quantidade de amostras"
+  )
+
+```
+
+Pelo gráfico acima, observamos que, entre as 5.000 amostras simuladas, a maioria (cerca de 1.500 casos) resultou em um ganho de **12 reais** para a Ana. O mais interessante é que esse resultado confirma exatamente a conta que fizemos lá em cima: se sabemos que 20% dos indivíduos da população respondem "sim" e 80% respondem "não", o ganho esperado fica em **12 reais**.
+
+Esse tal "ganho esperado" que viemos calculando até então pode ser entedido formalmente na estatística através do conceito de *valor esperado*... Agora que construímos uma base de conhecimento intuitiva através do exemplo da aposta, podemos nos aprofundar nos conceitos com mais cuidado.
+
+# Um passo atrás...
+
+Antes de falar especificamente sobre valor esperado, é importante definirmos dois conceitos fundamentais em estatística: **experimento aleatório** e **variáveis aleatórias**.
+
+Um **experimento aleatório** é qualquer processo cujo resultado não pode ser previsto com certeza antes de acontecer. Embora não saibamos exatamente qual será o desfecho, conhecemos o conjunto de possibilidades. Exemplos comuns incluem escolher uma pessoa ao acaso e medir sua altura, observar quanto tempo um ônibus demora para chegar a determinado local ou registrar a temperatura de um dia específico. Realizamos experimentos aleatórios para estudar fenômenos que envolvem incerteza: queremos compreender padrões, calcular probabilidades e prever comportamentos futuros, mesmo quando cada resultado individual é imprevisível.
+
+Para analisar os resultados de um experimento aleatório (que muitas vezes não são numéricos), utilizamos a ideia de **variável aleatória**. Uma variável aleatória é uma regra que transforma cada resultado do experimento em um número: essa regra recebe como entrada um elemento do experimento (uma pessoa, um dia, uma observação) e devolve um valor numérico que representa alguma característica desse elemento, como altura, tempo de atraso, quantidade de chuva ou um código associado a uma categoria. Por exemplo, em um experimento que consiste em observar o resultado dos lançamentos de uma moeda, podemos representar o experimento matematicamente como o valor 1 para toda vez que sair "cara" e 0 para toda vez que sair "coroa". Essa transformação é essencial porque permite usar ferramentas matemáticas como médias, variâncias e probabilidades para descrever o fenômeno. A variável aleatória funciona, portanto, como uma ponte que traduz o resultado incerto do mundo real para um formato numérico que podemos analisar.
+
+No exemplo da aposta entre Ana e Bia, o **experimento aleatório** consiste em entrevistar 10 pessoas e registrar a resposta de cada pessoa à pergunta *"Gêmeos é o melhor signo do zodíaco, né?"*. Embora não saibamos antecipadamente qual será a resposta de cada entrevistado, sabemos que cada pessoa pode responder apenas "sim" ou "não". Isso torna o experimento aleatório: mesmo conhecendo os possíveis resultados, a combinação exata de respostas observadas (e, portanto, o ganho financeiro final) só é revelada ao concluir as entrevistas. A **variável aleatória**, nesse caso, é a regra que traduz cada resposta a um valor numérico associado ao retorno financeiro: se a resposta for "sim", o retorno financeiro é +10, se a resposta for "não" o retorno financeiro é -1. Essa transformação converte um resultado qualitativo ("sim" ou "não") em um número, permitindo calcular médias, probabilidades e, principalmente, o ganho final. Quando somamos os valores atribuídos às 10 respostas obtemos o ganho total da aposta, que depende diretamente das respostas observadas no experimento.
+
+As variáveis aleatórias se tornam especialmente interessantes porque, apesar de dependerem do acaso, elas possuem uma característica chamada **valor esperado**, que funciona como uma medida do resultado médio que esperaríamos observar se o experimento fosse repetido muitas vezes. No contexto da aposta entre Ana e Bia, o valor esperado nos ajuda a entender qual seria o ganho financeiro mais frequente considerando as regras da aposta, independentemente das oscilações naturais que podem ocorrer em cada conjunto de entrevistas. Essa ideia de resumir o comportamento médio ("mais frequente") de algo incerto, é um dos motivos pelos quais variáveis aleatórias são tão úteis, e é exatamente o que exploraremos na próxima seção.
+
+# Valor esperado
+
+Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado de um jeito mais abrangente possível...
+
+A primeira definição que temos é que o **valor esperado é o resultado médio que esperamos obter se pudéssemos repetir um experimento aleatório muitas e muitas vezes, sob as mesmas condições**. No mundo real, contudo, a maior parte dos experimentos aleatórios acontece apenas uma vez: no exemplo da aposta entre Ana e Bia, a entrevista com as 10 pessoas ocorre uma única vez, e são essas respostas que determinam se Ana ganhará ou perderá dinheiro. Ainda assim, podemos imaginar o que aconteceria **em média** se a mesma aposta fosse repetida inúmeras vezes, cada vez com 10 pessoas escolhidas ao acaso. O valor esperado é justamente esse resultado típico: o retorno médio que apareceria com mais regularidade ao longo de muitas repetições hipotéticas do experimento.
+
+No gráfico "Distribuição do retorno financeiro para as amostras geradas" (replicado abaixo), é exatamente isso que vemos: ao repetirmos o experimento 10000 vezes, o retorno financeiro mais frequente é o de 12 reais. A linha vermelha tracejada indica a média do retorno financeiro de todos os experimentos e tem o valor exato de **`r round(mean(n_samples$balance), 2)`** (muito próximo de 12!).
+
+```{r}
+
+x_values <- unique(n_samples$balance)
+n_samples |> 
+  ggplot(
+    aes(
+      x = balance
+    )
+  ) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(breaks = x_values) +
+  geom_vline(
+    aes(xintercept = mean(n_samples$balance)), 
+    color = "red",
+    linetype = "dashed"
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Distribuição do retorno financeiro para as amostras geradas",
+    x = "retorno financeiro (R$)",
+    y = "quantidade de amostras"
+  )
+
+```
+
+Outra maneira de calcular o valor esperado é mostrada na fórmula abaixo. Ela nada mais é do que a versão matemática (mais organizada e elegante) do cálculo intuitivo que fizemos no início deste post.
+
+$$
+\mathbb{E}[X] = \sum_{i=1}^n x_i p_i
+$$
+
+Onde:
+
+- $\mathbb{E}[X]$ representa o valor esperado da variável aleatória $X$;
+- $x_i$ representa o valor que a variável aleatória $X$ pode assumir;
+- $p_i$ representa a probabilidade da variável aleatória assumir aquele valor.
+
+Considerando o exemplo da nossa aposta, temos que a nossa variável aleatória $X$ pode ser:
+
+$$
+X = 
+\begin{cases}
+10, & \text{se responder “sim”} \\
+-1, & \text{se responder “não”}
+\end{cases}
+$$
+
+Como sabemos que 20% da população responderia "sim" para nossa pergunta, podemos transformar essa informação em probabilidade. Uma porcentagem nada mais é do que uma razão sobre 100. Assim, $20\% = \frac{20}{100}$. Como probabilidades são representadas por valores ente 0 e 1, basta dividir 20 por 100, obtendo 0.2. Portanto, a probabilidade de um indivíduo escolhido aleatoriamente responder "sim" é ${P}(\text{sim}) = 0.20$. De forma análoga, sabemos que a probabilidade de um indivíduo escolhido aleatoriamente responder "não" é ${P}(\text{não}) = 0.80$.
+
+Usando a fórmula do valor esperado, temos:
+
+$$
+\mathbb{E}[X] \;=\; \sum x_i p_i \;=\; 10\cdot 0.20 + (-1)\cdot 0.80
+$$
+$$
+\mathbb{E}[X] = 2 - 0{.}8 = 1{.}20
+$$
+
+Isso significa que, em média, cada pessoa entrevistada gera um ganho esperado de 1.20 reais. Como a aposta envolve 10 pessoas, o valor esperado do ganho total é:
+
+$$
+\mathbb{E}[\text{ganho total}] = 10 \times \mathbb{E}[X] = 10 \times 1{.}20 = 12\,\text{reais}
+$$
+
+Esse cálculo teórico do valor esperado coincide exatamente com o resultado obtido de forma empírica nos experimentos realizados. Ou seja, quando repetimos o experimento muitas vezes (entrevistando grupos de 10 pessoas e registrando o ganho final) observamos que a média dos ganhos experimentais se aproxima do valor previsto pela fórmula do valor esperado. Isso acontece porque o valor esperado representa justamente a média de longo prazo de um experimento aleatório, e, portanto, quando acumulamos evidências empíricas suficientes, o comportamento observado se alinha ao que a teoria prevê.
+
+```{r}
+
+population |> 
+  mutate(
+    balance = case_when(
+      answer == 0 ~ -1,
+      answer == 1 ~ 10
+    )
+  ) |> 
+  summarise(
+    avg_balance = mean(balance)
+  )
+
+```
+
+## Valor esperado em diferentes distribuições
+
+# A melhor aposta
+
+blá blá blá 
+
+
+```{r}
+
+n <- 10 # pessoas amostradas
+results <- NULL
+
+for (i in seq(1:1000)){
+  
+  # amostra retirada nessa iteração
+  smp <- sample(population$answer, size = n, replace = FALSE)
+  
+  # rendimento caso o valor da aposte mude
+  balance <- c()
+  bet_money_max <- 10
+  for (j in seq(1:bet_money_max)){
+    b <- (sum(smp) * j) - ((n - sum(smp)) * 1)
+    balance <- c(balance, b)
+  }
+  
+  # colunas para adicionar
+  col_sample_number <- rep(i, bet_money_max)
+  col_bet_money <- seq(1, bet_money_max)
+  col_balance <- balance
+  # tabela temporária
+  temp <- tibble(
+    sample_number = col_sample_number,
+    bet_money = col_bet_money,
+    balance = col_balance
+  )
+  
+  # tabela final
+  results <- results |> bind_rows(temp)
+  
+}
+
+```
+
+
+```{r}
+
+results |> 
+  filter(
+    bet_money == 10
+  ) |> 
+  ggplot(
+    aes(
+      x = balance
+    )
+  ) +
+  geom_histogram()
+  # scale_x_continuous(
+  #   breaks = seq(min(results), max(results), by = 2),   # valores que aparecem no eixo
+  #   #limits = c(600, 1000)               # (opcional) define o range do eixo
+  # )
+
+```
+
+
+```{r}
+
+results |> 
+  summarise(
+    #n_samples = n(),
+    expected_balance = mean(balance),
+    .by = c(bet_money)
+  ) |> 
+  ggplot(
+    aes(
+      x = bet_money,
+      y = expected_balance
+    )
+  ) +
+  geom_line() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") 
+  
+
+```
+
+
+2. A intuição: média ponderada pelos resultados possíveis
+
+Explique que o valor esperado é o “resultado médio” de um experimento aleatório, ponderado pelas probabilidades de cada resultado.
+
+Mostre que não é o resultado que ocorre de verdade, mas o valor médio que se espera em longo prazo.
+
+```{r}
+
+# ------------------------------------------------------------
+# Simulação: valor esperado, média populacional e médias amostrais
+# Distribuição: Log-Normal (cauda à direita)
+# ------------------------------------------------------------
+
+set.seed(42)
+
+# 1) Parâmetros da distribuição Log-Normal
+mu <- 0      # média do log
+sigma <- 1   # desvio padrão do log
+
+# 2) Gerar uma "população" grande
+pop_size <- 1e6
+population <- rlnorm(pop_size, meanlog = mu, sdlog = sigma)
+
+# 3) Média empírica da população
+pop_mean_empirical <- mean(population)
+
+# 4) Valor esperado teórico da Log-Normal: E[X] = exp(mu + sigma^2 / 2)
+pop_expected_theoretical <- exp(mu + sigma^2 / 2)
+
+# 5) Comparação
+comparison <- data.frame(
+  medida = c("Média empírica da população", "Valor esperado teórico", "Diferença (empírica - teórico)"),
+  valor = c(pop_mean_empirical,
+            pop_expected_theoretical,
+            pop_mean_empirical - pop_expected_theoretical)
+)
+print(comparison)
+
+# 6) Gerar várias amostras e calcular médias amostrais
+num_samples <- 1000   # número de amostras
+sample_size <- 50     # tamanho de cada amostra
+
+sample_means <- replicate(num_samples, mean(rlnorm(sample_size, meanlog = mu, sdlog = sigma)))
+
+mean_of_sample_means <- mean(sample_means)
+sd_of_sample_means <- sd(sample_means)
+
+# 7) Resultados finais
+summary_results <- data.frame(
+  descricao = c("Média empírica da população",
+                "Valor esperado teórico (LogNormal)",
+                "Diferença (empírica - teórico)",
+                "Número de amostras geradas",
+                "Tamanho de cada amostra",
+                "Média das médias amostrais",
+                "Desvio padrão das médias amostrais"),
+  valor = c(pop_mean_empirical,
+            pop_expected_theoretical,
+            pop_mean_empirical - pop_expected_theoretical,
+            num_samples,
+            sample_size,
+            mean_of_sample_means,
+            sd_of_sample_means)
+)
+
+print(summary_results)
+
+# 8) Histograma das médias amostrais
+hist(sample_means,
+     breaks = 30,
+     main = "Histograma das médias amostrais (1000 amostras, n=50)",
+     xlab = "Média amostral",
+     col = "skyblue",
+     border = "white")
+
+# ------------------------------------------------------------
+# Interpretação esperada:
+# - O valor esperado e a média populacional são praticamente iguais (diferença pequena).
+# - A média das médias amostrais se aproxima do valor esperado teórico,
+#   confirmando que a média amostral é um estimador não viesado de E[X].
+# ------------------------------------------------------------
+
+
+```
+
+```{r}
+
+hist(population)
+
+```
+
+```{r}
+
+# Definindo um tamanho de população "muito grande"
+N <- 10000000 # 10 milhões de elementos
+
+# ----------------------------------------------------------------------
+# 1. SIMULAÇÃO DA POPULAÇÃO NORMAL
+# ----------------------------------------------------------------------
+
+# Parâmetros escolhidos
+mu_normal <- 50    # Média populacional teórica (mu)
+sigma_normal <- 10 # Desvio padrão populacional (sigma)
+
+# Simulação (Geração da POPULAÇÃO)
+set.seed(42) # Para reprodutibilidade
+populacao_normal <- rnorm(n = N, mean = mu_normal, sd = sigma_normal)
+
+# ----------------------------------------------------------------------
+# 2. SIMULAÇÃO DA POPULAÇÃO BETA
+# ----------------------------------------------------------------------
+
+# Parâmetros escolhidos (Beta geralmente varia entre 0 e 1)
+alpha_beta <- 2 # Parâmetro de forma alfa
+beta_beta <- 5  # Parâmetro de forma beta
+
+# Simulação (Geração da POPULAÇÃO)
+set.seed(42) # Para reprodutibilidade
+populacao_beta <- rbeta(n = N, shape1 = alpha_beta, shape2 = beta_beta)
+
+# ----------------------------------------------------------------------
+# 3. FÓRMULA TEÓRICA E CÁLCULO DA MÉDIA POPULACIONAL
+# ----------------------------------------------------------------------
+
+cat("--- Distribuição Normal (N =", N, ") ---\n")
+
+# - Formula TEÓRICA para a Média Populacional (mu_normal)
+# Para uma distribuição Normal N(mu, sigma^2), a média populacional é o próprio parâmetro mu.
+cat("FÓRMULA TEÓRICA: mu = mu\n")
+
+# - Cálculo da Média Populacional (mu) usando a FÓRMULA TEÓRICA
+media_teorica_normal <- mu_normal
+cat("Média Populacional (TEÓRICA):", media_teorica_normal, "\n")
+
+# - Cálculo da Média Amostral (estimativa da média populacional)
+# Soma de todos os elementos da simulação dividida por N
+media_simulada_normal <- sum(populacao_normal) / N
+cat("Média Amostral (SIMULADA):", media_simulada_normal, "\n")
+
+# ----------------------------------------------------------------------
+
+cat("\n--- Distribuição Beta (N =", N, ") ---\n")
+
+# - Formula TEÓRICA para a Média Populacional (mu_beta)
+# Para uma distribuição Beta(alpha, beta), a média populacional é alpha / (alpha + beta).
+cat("FÓRMULA TEÓRICA: mu = alpha / (alpha + beta)\n")
+
+# - Cálculo da Média Populacional (mu) usando a FÓRMULA TEÓRICA
+media_teorica_beta <- alpha_beta / (alpha_beta + beta_beta)
+cat("Média Populacional (TEÓRICA):", media_teorica_beta, "\n")
+
+# - Cálculo da Média Amostral (estimativa da média populacional)
+# Soma de todos os elementos da simulação dividida por N
+media_simulada_beta <- sum(populacao_beta) / N
+cat("Média Amostral (SIMULADA):", media_simulada_beta, "\n")
+
+# Nota: A função 'mean()' no R faz exatamente essa soma e divisão
+# media_simulada_beta_alt <- mean(populacao_beta) 
+# cat("Média Amostral (SIMULADA - usando mean()):", media_simulada_beta_alt, "\n")
+
+```
+
+```{r}
+
+hist(populacao_beta)
+
+```
+
+```{r}
+
+mean(populacao_beta)
+median(populacao_beta)
+
+```
+
+
+
+
+```{r}
+
+# Parâmetros definidos no exemplo anterior:
+mu_normal <- 50
+sigma_normal <- 10
+alpha_beta <- 2
+beta_beta <- 5
+
+cat("=================================================================\n")
+cat("                VALOR ESPERADO (MÉDIA POPULACIONAL) \n")
+cat("=================================================================\n\n")
+
+# ----------------------------------------------------------------------
+# A. DISTRIBUIÇÃO NORMAL
+# ----------------------------------------------------------------------
+cat("A. DISTRIBUIÇÃO NORMAL (Parâmetros: mu = ", mu_normal, ", sigma = ", sigma_normal, ")\n", sep="")
+cat("-----------------------------------------------------------------\n")
+
+# 1. Fórmula Teórica
+cat("Fórmula Teórica do Valor Esperado (E[X]): E[X] = mu\n")
+
+# 2. Cálculo Teórico
+valor_esperado_normal <- mu_normal
+cat("Cálculo Teórico do Valor Esperado (E[X]):", valor_esperado_normal, "\n\n")
+
+
+# ----------------------------------------------------------------------
+# B. DISTRIBUIÇÃO BETA
+# ----------------------------------------------------------------------
+cat("B. DISTRIBUIÇÃO BETA (Parâmetros: alpha = ", alpha_beta, ", beta = ", beta_beta, ")\n", sep="")
+cat("-----------------------------------------------------------------\n")
+
+# 1. Fórmula Teórica
+cat("Fórmula Teórica do Valor Esperado (E[X]): E[X] = alpha / (alpha + beta)\n")
+
+# 2. Cálculo Teórico
+valor_esperado_beta <- alpha_beta / (alpha_beta + beta_beta)
+cat("Cálculo Teórico do Valor Esperado (E[X]):", valor_esperado_beta, " (ou 2/7)\n")
+
+# ----------------------------------------------------------------------
+
+# (Opcional: Comparação com a Média da Simulação anterior)
+# Se você rodar o código original junto com este, a comparação será:
+
+# Média Amostral (Simulada, N=10M)
+# Normal: 50.00010
+# Beta:   0.2857211
+
+cat("\n=================================================================\n")
+cat("Comparação (Teórico vs. Simulado):\n")
+cat("Normal - Teórico:", valor_esperado_normal, "| Simulada:", mean(populacao_normal), "\n")
+cat("Beta   - Teórico:", valor_esperado_beta, "| Simulada:", mean(populacao_beta), "\n")
+cat("=================================================================\n")
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
