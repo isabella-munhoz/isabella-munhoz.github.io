@@ -4,12 +4,12 @@ description: "(e isso não é sobre tarot ou astrologia)"
 author: Isabella Munhoz
 date: 2025-12-02
 #categories: [categoria-teste] # self-defined categories
-image: 2025-10-15-thumb.jpg
+image: 2025-12-02-thumb.jpg
 draft: false # true: post não aparece no site (é considerado rascunho)
 ---
 
 ::: {style="width: 100%; height: 250px; overflow: hidden; margin-bottom: 1rem;"}
-<img src="2025-10-15-thumb.jpg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;"/>
+<img src="2025-12-02-thumb.jpg" alt="Imagem de capa" style="width: 100%; object-fit: cover; object-position: center;"/>
 :::
 
 ```{r}
