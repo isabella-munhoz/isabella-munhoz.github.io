@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Isabella Munhoz">
-<meta name="dcterms.date" content="2025-10-15">
+<meta name="dcterms.date" content="2025-12-02">
 <meta name="description" content="(e isso não é sobre tarot ou astrologia)">
 
 <title>O que podemos esperar do não visto… – Isabella Munhoz</title>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 15, 2025</p>
+        <p class="date">December 2, 2025</p>
       </div>
     </div>
     
@@ -240,8 +240,12 @@ window.Quarto = {
   <li><a href="#um-passo-atrás" id="toc-um-passo-atrás" class="nav-link" data-scroll-target="#um-passo-atrás">Um passo atrás…</a></li>
   <li><a href="#valor-esperado" id="toc-valor-esperado" class="nav-link" data-scroll-target="#valor-esperado">Valor esperado</a>
   <ul class="collapse">
-  <li><a href="#valor-esperado-em-diferentes-distribuições" id="toc-valor-esperado-em-diferentes-distribuições" class="nav-link" data-scroll-target="#valor-esperado-em-diferentes-distribuições">Valor esperado em diferentes distribuições</a></li>
+  <li><a href="#cálculo-a-partir-de-experimentos" id="toc-cálculo-a-partir-de-experimentos" class="nav-link" data-scroll-target="#cálculo-a-partir-de-experimentos">Cálculo a partir de experimentos</a></li>
+  <li><a href="#cálculo-a-partir-da-fórmula-teórica" id="toc-cálculo-a-partir-da-fórmula-teórica" class="nav-link" data-scroll-target="#cálculo-a-partir-da-fórmula-teórica">Cálculo a partir da fórmula teórica</a></li>
+  <li><a href="#cálculo-a-partir-da-distribuição-populacional" id="toc-cálculo-a-partir-da-distribuição-populacional" class="nav-link" data-scroll-target="#cálculo-a-partir-da-distribuição-populacional">Cálculo a partir da distribuição populacional</a></li>
+  <li><a href="#um-resumo-de-todas-as-definições" id="toc-um-resumo-de-todas-as-definições" class="nav-link" data-scroll-target="#um-resumo-de-todas-as-definições">Um resumo de todas as definições</a></li>
   </ul></li>
+  <li><a href="#valor-esperado-em-diferentes-distribuições" id="toc-valor-esperado-em-diferentes-distribuições" class="nav-link" data-scroll-target="#valor-esperado-em-diferentes-distribuições">Valor esperado em diferentes distribuições</a></li>
   <li><a href="#a-melhor-aposta" id="toc-a-melhor-aposta" class="nav-link" data-scroll-target="#a-melhor-aposta">A melhor aposta</a></li>
   </ul>
 </nav>
@@ -259,7 +263,7 @@ window.Quarto = {
 <section id="introdução" class="level1">
 <h1>Introdução</h1>
 <p>Vamos começar imaginando um mundo paralelo: um lugar com 1 milhão de habitantes. Como conhecemos cada pessoa desse mundo, sabemos exatamente a resposta deles para uma das perguntas mais importantes já feitas: <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>.</p>
-<p>Claro que a resposta certa seria <strong>SIM</strong>, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor, enquanto 700 mil discordam (eu sei… as pessoas têm alguma resistência com geminianos… completamente injustificada, aliás).</p>
+<p>Claro que a resposta certa seria <strong>SIM</strong>, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor signo, enquanto 700 mil discordam (eu sei… as pessoas têm alguma resistência com geminianos… completamente injustificada, aliás).</p>
 <p>A tabela abaixo apresenta 10 habitantes do mundo que criamos. A coluna <strong>id</strong> representa o identificador de cada indivíduo (como se fosse o CPF), enquanto a coluna <strong>answer</strong> indica se aquela pessoa acredita que Gêmeos é o melhor signo do zodíaco (0 = “não”, 1 = “sim”).</p>
 <div class="cell">
 <details class="code-fold">
@@ -569,7 +573,9 @@ window.Quarto = {
 </section>
 <section id="valor-esperado" class="level1">
 <h1>Valor esperado</h1>
-<p>Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado de um jeito mais abrangente possível…</p>
+<p>Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado conectando diferentes maneiras de enxergá-lo.</p>
+<section id="cálculo-a-partir-de-experimentos" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-a-partir-de-experimentos">Cálculo a partir de experimentos</h2>
 <p>A primeira definição que temos é que o <strong>valor esperado é o resultado médio que esperamos obter se pudéssemos repetir um experimento aleatório muitas e muitas vezes, sob as mesmas condições</strong>. No mundo real, contudo, a maior parte dos experimentos aleatórios acontece apenas uma vez: no exemplo da aposta entre Ana e Bia, a entrevista com as 10 pessoas ocorre uma única vez, e são essas respostas que determinam se Ana ganhará ou perderá dinheiro. Ainda assim, podemos imaginar o que aconteceria <strong>em média</strong> se a mesma aposta fosse repetida inúmeras vezes, cada vez com 10 pessoas escolhidas ao acaso. O valor esperado é justamente esse resultado típico: o retorno médio que apareceria com mais regularidade ao longo de muitas repetições hipotéticas do experimento.</p>
 <p>No gráfico “Distribuição do retorno financeiro para as amostras geradas” (replicado abaixo), é exatamente isso que vemos: ao repetirmos o experimento 10000 vezes, o retorno financeiro mais frequente é o de 12 reais. A linha vermelha tracejada indica a média do retorno financeiro de todos os experimentos e tem o valor exato de <strong>11.98</strong> (muito próximo de 12!).</p>
 <div class="cell">
@@ -581,6 +587,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="cálculo-a-partir-da-fórmula-teórica" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-a-partir-da-fórmula-teórica">Cálculo a partir da fórmula teórica</h2>
 <p>Outra maneira de calcular o valor esperado é mostrada na fórmula abaixo. Ela nada mais é do que a versão matemática (mais organizada e elegante) do cálculo intuitivo que fizemos no início deste post.</p>
 <p><span class="math display">\[
 \mathbb{E}[X] = \sum_{i=1}^n x_i p_i
@@ -611,21 +620,84 @@ X =
 \mathbb{E}[\text{ganho total}] = 10 \times \mathbb{E}[X] = 10 \times 1{.}20 = 12\,\text{reais}
 \]</span></p>
 <p>Esse cálculo teórico do valor esperado coincide exatamente com o resultado obtido de forma empírica nos experimentos realizados. Ou seja, quando repetimos o experimento muitas vezes (entrevistando grupos de 10 pessoas e registrando o ganho final) observamos que a média dos ganhos experimentais se aproxima do valor previsto pela fórmula do valor esperado. Isso acontece porque o valor esperado representa justamente a média de longo prazo de um experimento aleatório, e, portanto, quando acumulamos evidências empíricas suficientes, o comportamento observado se alinha ao que a teoria prevê.</p>
+</section>
+<section id="cálculo-a-partir-da-distribuição-populacional" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-a-partir-da-distribuição-populacional">Cálculo a partir da distribuição populacional</h2>
+<p>O valor esperado também pode ser entendido como a <strong>média populacional que obteríamos se tivéssemos acesso a todos os dados da população</strong>. Como normalmente não dispomos de todas as observações possíveis, essa média é tratada como um valor teórico, definido pelas probabilidades da variável aleatória em estudo. No nosso exemplo, porém, temos a população completa, o que nos permite calcular diretamente essa média, como mostrado abaixo.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  avg_balance
-        &lt;dbl&gt;
-1        1.20</code></pre>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>population <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">balance =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      answer <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      answer <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">10</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">population_avg_balance =</span> <span class="fu">mean</span>(balance)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mk_tbl</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_title =</span> <span class="st">"Média populacional"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Média populacional</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">population_avg_balance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 100%;">1.2</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<section id="valor-esperado-em-diferentes-distribuições" class="level2">
-<h2 class="anchored" data-anchor-id="valor-esperado-em-diferentes-distribuições">Valor esperado em diferentes distribuições</h2>
+</div>
+</div>
+<p><br> Considerando que cada resposta “sim” gera um retorno de +10 reais e cada resposta “não” gera um retorno de –1 real, então a média calculada sobre toda a população resulta em um valor de R$ 1.20. Esse valor coincide exatamente com o que obtivemos pela fórmula do valor esperado: em média, cada pessoa entrevistada gera um ganho esperado de R$ 1.20.</p>
+</section>
+<section id="um-resumo-de-todas-as-definições" class="level2">
+<h2 class="anchored" data-anchor-id="um-resumo-de-todas-as-definições">Um resumo de todas as definições</h2>
+<p>Como podemos notar, o valor esperado pode ser compreendido (e calculado) a partir de diferentes perspectivas, cada uma oferecendo uma forma distinta de enxergar o conceito (mas todas convergindo para o mesmo resultado).</p>
+<p>Em resumo, podemos entender o valor esperado como:</p>
+<ul>
+<li><p><strong>Uma média empírica</strong>, interpretada como o resultado médio que esperamos obter ao repetir um experimento aleatório muitas e muitas vezes sob as mesmas condições.</p></li>
+<li><p><strong>Uma média teórica</strong>, calculada pela fórmula <span class="math inline">\(\mathbb{E}[X] = \sum_{i=1}^n x_i p_i\)</span>, que combina cada resultado possível com sua probabilidade.</p></li>
+<li><p><strong>A média populacional</strong>, que obteríamos caso tivéssemos acesso a todas as observações geradas pela variável aleatória.</p></li>
+</ul>
+<p>O valor esperado é, portanto, a medida teórica que descreve o valor médio de uma variável aleatória, a média “verdadeira” (populacional) de sua distribuição, e funciona como o parâmetro central ao qual as médias observadas nas amostras tendem a se aproximar conforme coletamos mais e mais dados.</p>
 </section>
 </section>
-<section id="a-melhor-aposta" class="level1">
-<h1>A melhor aposta</h1>
-<p>blá blá blá</p>
+<section id="valor-esperado-em-diferentes-distribuições" class="level1">
+<h1>Valor esperado em diferentes distribuições</h1>
+<p>Conforme já mencionado, variáveis aleatórias são valores gerados por algum processo incerto, como a altura das pessoas, o resultado de um experimento ou comportamentos que variam de indivíduo para indivíduo. No exemplo da aposta entre Ana e Bia, o experimento aleatório consiste em entrevistar 10 pessoas e registrar a resposta de cada uma à pergunta <strong>“Gêmeos é o melhor signo do zodíaco, né?”</strong>. Ao associarmos as respostas “sim” ou “não” aos retornos financeiros correspondentes, obtemos nossa variável aleatória.</p>
+<p>Apesar de incertas, variáveis aleatórias não se comportam de qualquer maneira: elas seguem o que chamamos de <strong>distribuição</strong>. Uma distribuição descreve como os possíveis valores de uma variável aleatória se espalham e com que frequência cada valor tende a aparecer. Em outras palavras, ela é a “história” dos dados: mostra quais resultados são comuns, quais são raros e qual é o comportamento geral daquela variável na população.</p>
+<p>No exemplo que estamos usando, ao entrevistar 10 pessoas, calculamos o retorno financeiro daquele grupo. Esse retorno segue uma distribuição chamada <strong>Binomial</strong>, que descreve situações em que repetimos o mesmo experimento diversas vezes (fazer a mesma pergunta para várias pessoas) e cada tentativa só pode resultar em duas saídas possíveis, como “sim” ou “não”. A distribuição Binomial nos diz quantas vezes um determinado resultado tende a aparecer ao longo dessas repetições, assumindo que cada pessoa responde de forma independente e que a probabilidade de responder “sim” é sempre a mesma.</p>
+<p>Além da Binomial, existem várias outras distribuições muito usadas na prática, como a Normal, a Gamma, a Poisson e a Beta, e por aí vai… Cada uma descreve comportamentos e padrões distintos que aparecem em diferentes tipos de dados.</p>
+<p>No gráfico abaixo, simulamos populações que seguem algumas dessas distribuições para observar visualmente como elas se apresentam.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>distributions <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution =</span> <span class="fu">c</span>(<span class="st">"Binomial"</span>, <span class="st">"Normal"</span>, <span class="st">"Beta"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rbinom</span>(<span class="dv">100000</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.3</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">100000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rbeta</span>(<span class="dv">100000</span>, <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">2</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(values) <span class="sc">|&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">random_variable =</span> values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -635,149 +707,165 @@ X =
 </div>
 </div>
 </div>
+<p>O objetivo deste post não é aprofundar no estudo das distribuições, mas sim discutir o valor esperado. E aqui vem o ponto-chave que gostaria de trazer nessa seção: <strong>o conceito de valor esperado é o mesmo para qualquer distribuição</strong>. Independentemente da forma da distribuição populacional da variável aleatória, <strong>o valor esperado é sempre a média populacional</strong>.</p>
+<p>Abaixo, mostramos para cada distribuição simulada anteriormente o cálculo da média populacional (ou seja, a média considerando todos os valores gerados naquela população simulada).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>distributions <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">population_mean =</span> <span class="fu">mean</span>(random_variable),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(distribution)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    distribution</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mk_tbl</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_title =</span> <span class="st">"Média populacional de diferentes distribuições"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Média populacional de diferentes distribuições</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">distribution</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">population_mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">Beta</td>
+<td style="text-align: center; width: 50%;">0.8002324</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">Binomial</td>
+<td style="text-align: center; width: 50%;">2.9973500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">Normal</td>
+<td style="text-align: center; width: 50%;">0.0035722</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> Em seguida, aplicamos, para cada uma dessas populações, o cálculo do valor esperado pelo método empírico descrito na seção anterior e podemos observar que o valor obtido empiricamente é praticamente igual à média populacional.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>distributions_samples <span class="ot">&lt;-</span> distributions <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(distribution) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_mean =</span> purrr<span class="sc">::</span><span class="fu">map_dbl</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span><span class="fu">mean</span>(<span class="fu">sample</span>(random_variable, <span class="at">size =</span> <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>distributions_samples <span class="sc">|&gt;</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">expected_value =</span> <span class="fu">mean</span>(sample_mean),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(distribution)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    distribution</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mk_tbl</span>(</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">table_title =</span> <span class="st">"Valor esperado de diferentes distribuições"</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Valor esperado de diferentes distribuições</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">distribution</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">expected_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">Beta</td>
+<td style="text-align: center; width: 50%;">0.8001921</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 50%;">Binomial</td>
+<td style="text-align: center; width: 50%;">2.9957690</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 50%;">Normal</td>
+<td style="text-align: center; width: 50%;">0.0053485</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><br> <em>Importante: para cada distribuição, também poderíamos calcular o valor esperado usando a fórmula teórica ou diretamente a partir dos parâmetros da distribuição. Para manter o texto mais simples, ficamos apenas com o cálculo empírico.</em></p>
+<p>Saber que o valor esperado é a média teórica de uma distribuição é importante porque ele representa o ponto em torno do qual a variável aleatória “se organiza”: o seu verdadeiro “centro de gravidade”. Todavia, na prática, quase nunca temos acesso à distribuição completa (ou seja, aos dados populacionais). O que temos são amostras da população real. Por isso, o nosso trabalho costuma ser estimar a média populacional a partir da média amostral. Quando entendemos que o valor esperado é justamente essa <strong>média teórica</strong> que estamos tentando aproximar com os dados observados, conseguimos interpretar melhor o que nossas estimativas significam, avaliar o quanto elas estão próximas do “centro” real da variável e tomar decisões mais informadas mesmo diante da incerteza. Compreender o valor esperado, portanto, é entender o ponto de equilíbrio da variável, seja olhando para toda a distribuição, seja olhando para os dados que conseguimos observar.</p>
+</section>
+<section id="a-melhor-aposta" class="level1">
+<h1>A melhor aposta</h1>
+<p>Voltando ao tema central deste post, chegamos à conclusão de que o resultado da aposta entre Ana e Bia depende, no fim das contas, da SORTE. Porém, com um pouco de estatística, conseguimos ir além do palpite intuitivo. A partir da definição de valor esperado, descobrimos algo importante: a estrutura da aposta favorece Ana, já que o resultado financeiro mais provável gira em torno de 12 reais de ganho.</p>
+<p>Contudo, uma outra pergunta surge a partir do que estudamos: se Ana decidisse mudar o valor pago por cada pessoa que responde “sim”, haveria algum ponto em que a aposta se tornaria desfavorável para ela?</p>
+<p>É exatamente aqui que o valor esperado mostra sua força. Ele permite que Ana explore diferentes cenários antes mesmo de fazer a aposta. Basta variar o valor pago por cada resposta “sim” e calcular, para cada possibilidade, se o balanço financeiro esperado é positivo ou negativo.</p>
+<p>No código abaixo, calculamos o valor esperado da aposta considerando que as respostas “sim” dos entrevistados poderiam variar entre R$ 1 e R$ 20. Pelo gráfico a seguir, observamos que, se o pagamento por resposta “sim” fosse menor que R$ 5, Ana tenderia a perder dinheiro!</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># pessoas amostradas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>best_bet <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)){</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># amostra retirada nessa iteração</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  smp <span class="ot">&lt;-</span> <span class="fu">sample</span>(population<span class="sc">$</span>answer, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># rendimento caso o valor da aposte mude</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  balance <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  bet_money_max <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span>bet_money_max)){</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> (<span class="fu">sum</span>(smp) <span class="sc">*</span> j) <span class="sc">-</span> ((n <span class="sc">-</span> <span class="fu">sum</span>(smp)) <span class="sc">*</span> <span class="dv">1</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    balance <span class="ot">&lt;-</span> <span class="fu">c</span>(balance, b)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># colunas para adicionar</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  col_sample_number <span class="ot">&lt;-</span> <span class="fu">rep</span>(i, bet_money_max)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  col_bet_money <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, bet_money_max)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  col_balance <span class="ot">&lt;-</span> balance</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tabela temporária</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_number =</span> col_sample_number,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">bet_money =</span> col_bet_money,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">balance =</span> col_balance</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tabela final</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  best_bet <span class="ot">&lt;-</span> best_bet <span class="sc">|&gt;</span> <span class="fu">bind_rows</span>(temp)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<ol start="2" type="1">
-<li>A intuição: média ponderada pelos resultados possíveis</li>
-</ol>
-<p>Explique que o valor esperado é o “resultado médio” de um experimento aleatório, ponderado pelas probabilidades de cada resultado.</p>
-<p>Mostre que não é o resultado que ocorre de verdade, mas o valor médio que se espera em longo prazo.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>                          medida       valor
-1    Média empírica da população 1.650074293
-2         Valor esperado teórico 1.648721271
-3 Diferença (empírica - teórico) 0.001353022</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                           descricao          valor
-1        Média empírica da população    1.650074293
-2 Valor esperado teórico (LogNormal)    1.648721271
-3     Diferença (empírica - teórico)    0.001353022
-4         Número de amostras geradas 1000.000000000
-5            Tamanho de cada amostra   50.000000000
-6         Média das médias amostrais    1.644542521
-7 Desvio padrão das médias amostrais    0.305349731</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>--- Distribuição Normal (N = 10000000 ) ---</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>FÓRMULA TEÓRICA: mu = mu</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Média Populacional (TEÓRICA): 50 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Média Amostral (SIMULADA): 50.00475 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
---- Distribuição Beta (N = 10000000 ) ---</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>FÓRMULA TEÓRICA: mu = alpha / (alpha + beta)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Média Populacional (TEÓRICA): 0.2857143 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Média Amostral (SIMULADA): 0.2857716 </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2857716</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2645177</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>=================================================================</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                VALOR ESPERADO (MÉDIA POPULACIONAL) </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=================================================================</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>A. DISTRIBUIÇÃO NORMAL (Parâmetros: mu = 50, sigma = 10)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>-----------------------------------------------------------------</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Fórmula Teórica do Valor Esperado (E[X]): E[X] = mu</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cálculo Teórico do Valor Esperado (E[X]): 50 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>B. DISTRIBUIÇÃO BETA (Parâmetros: alpha = 2, beta = 5)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>-----------------------------------------------------------------</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Fórmula Teórica do Valor Esperado (E[X]): E[X] = alpha / (alpha + beta)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cálculo Teórico do Valor Esperado (E[X]): 0.2857143  (ou 2/7)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-=================================================================</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Comparação (Teórico vs. Simulado):</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Normal - Teórico: 50 | Simulada: 50.00475 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Beta   - Teórico: 0.2857143 | Simulada: 0.2857716 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=================================================================</code></pre>
-</div>
-</div>
+<p>O mais interessante é perceber que essa lógica não vale só para a aposta da Ana. Ela vale para praticamente qualquer situação incerta da vida: investimentos, decisões de produto, estratégias de negócio, experimentos, pesquisas, escolhas do dia a dia. <strong>O valor esperado nos dá uma forma racional de enxergar onde está o ponto de equilíbrio de um processo incerto.</strong></p>
+<p>E, no fundo, é isso que torna a estatística tão fascinante: assim como o tarô e a astrologia, ela tenta lançar luz sobre o desconhecido, e, a partir de ferramentas que nos permitem quantificar incertezas, nos ajuda a comparar cenários e entender, com mais clareza, o que podemos esperar do futuro. Estatística não elimina o acaso, mas nos ajuda a navegar por ele com muito mais sabedoria.</p>
 
 
 </section>

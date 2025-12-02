@@ -2,7 +2,7 @@
 title: "O que podemos esperar do não visto..."
 description: "(e isso não é sobre tarot ou astrologia)"
 author: Isabella Munhoz
-date: 2025-10-15
+date: 2025-12-02
 #categories: [categoria-teste] # self-defined categories
 image: 2025-10-15-thumb.jpg
 draft: false # true: post não aparece no site (é considerado rascunho)
@@ -59,7 +59,7 @@ mk_tbl <- function(data, table_title) {
 
 Vamos começar imaginando um mundo paralelo: um lugar com 1 milhão de habitantes. Como conhecemos cada pessoa desse mundo, sabemos exatamente a resposta deles para uma das perguntas mais importantes já feitas: *“Gêmeos é o melhor signo do zodíaco, né?”*.
 
-Claro que a resposta certa seria **SIM**, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor, enquanto 700 mil discordam (eu sei... as pessoas têm alguma resistência com geminianos... completamente injustificada, aliás).
+Claro que a resposta certa seria **SIM**, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor signo, enquanto 700 mil discordam (eu sei... as pessoas têm alguma resistência com geminianos... completamente injustificada, aliás).
 
 A tabela abaixo apresenta 10 habitantes do mundo que criamos. A coluna **id** representa o identificador de cada indivíduo (como se fosse o CPF), enquanto a coluna **answer** indica se aquela pessoa acredita que Gêmeos é o melhor signo do zodíaco (0 = “não”, 1 = “sim”).
 
@@ -326,7 +326,9 @@ As variáveis aleatórias se tornam especialmente interessantes porque, apesar d
 
 # Valor esperado
 
-Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado de um jeito mais abrangente possível...
+Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado conectando diferentes maneiras de enxergá-lo.
+
+## Cálculo a partir de experimentos 
 
 A primeira definição que temos é que o **valor esperado é o resultado médio que esperamos obter se pudéssemos repetir um experimento aleatório muitas e muitas vezes, sob as mesmas condições**. No mundo real, contudo, a maior parte dos experimentos aleatórios acontece apenas uma vez: no exemplo da aposta entre Ana e Bia, a entrevista com as 10 pessoas ocorre uma única vez, e são essas respostas que determinam se Ana ganhará ou perderá dinheiro. Ainda assim, podemos imaginar o que aconteceria **em média** se a mesma aposta fosse repetida inúmeras vezes, cada vez com 10 pessoas escolhidas ao acaso. O valor esperado é justamente esse resultado típico: o retorno médio que apareceria com mais regularidade ao longo de muitas repetições hipotéticas do experimento.
 
@@ -356,6 +358,8 @@ n_samples |>
   )
 
 ```
+
+## Cálculo a partir da fórmula teórica
 
 Outra maneira de calcular o valor esperado é mostrada na fórmula abaixo. Ela nada mais é do que a versão matemática (mais organizada e elegante) do cálculo intuitivo que fizemos no início deste post.
 
@@ -398,7 +402,11 @@ $$
 
 Esse cálculo teórico do valor esperado coincide exatamente com o resultado obtido de forma empírica nos experimentos realizados. Ou seja, quando repetimos o experimento muitas vezes (entrevistando grupos de 10 pessoas e registrando o ganho final) observamos que a média dos ganhos experimentais se aproxima do valor previsto pela fórmula do valor esperado. Isso acontece porque o valor esperado representa justamente a média de longo prazo de um experimento aleatório, e, portanto, quando acumulamos evidências empíricas suficientes, o comportamento observado se alinha ao que a teoria prevê.
 
-```{r}
+## Cálculo a partir da distribuição populacional
+
+O valor esperado também pode ser entendido como a **média populacional que obteríamos se tivéssemos acesso a todos os dados da população**. Como normalmente não dispomos de todas as observações possíveis, essa média é tratada como um valor teórico, definido pelas probabilidades da variável aleatória em estudo. No nosso exemplo, porém, temos a população completa, o que nos permite calcular diretamente essa média, como mostrado abaixo.
+
+```{r echo = TRUE}
 
 population |> 
   mutate(
@@ -408,22 +416,149 @@ population |>
     )
   ) |> 
   summarise(
-    avg_balance = mean(balance)
+    population_avg_balance = mean(balance)
+  ) |> 
+  mk_tbl(
+    table_title = "Média populacional"
+  )
+
+```
+<br>
+Considerando que cada resposta "sim" gera um retorno de +10 reais e cada resposta "não" gera um retorno de –1 real, então a média calculada sobre toda a população resulta em um valor de R\$ 1.20. Esse valor coincide exatamente com o que obtivemos pela fórmula do valor esperado: em média, cada pessoa entrevistada gera um ganho esperado de R\$ 1.20.
+
+## Um resumo de todas as definições
+
+Como podemos notar, o valor esperado pode ser compreendido (e calculado) a partir de diferentes perspectivas, cada uma oferecendo uma forma distinta de enxergar o conceito (mas todas convergindo para o mesmo resultado).
+
+Em resumo, podemos entender o valor esperado como:
+
+- **Uma média empírica**, interpretada como o resultado médio que esperamos obter ao repetir um experimento aleatório muitas e muitas vezes sob as mesmas condições.
+
+- **Uma média teórica**, calculada pela fórmula $\mathbb{E}[X] = \sum_{i=1}^n x_i p_i$, que combina cada resultado possível com sua probabilidade.
+
+- **A média populacional**, que obteríamos caso tivéssemos acesso a todas as observações geradas pela variável aleatória.
+
+O valor esperado é, portanto, a medida teórica que descreve o valor médio de uma variável aleatória, a média "verdadeira" (populacional) de sua distribuição, e funciona como o parâmetro central ao qual as médias observadas nas amostras tendem a se aproximar conforme coletamos mais e mais dados.
+
+# Valor esperado em diferentes distribuições
+
+Conforme já mencionado, variáveis aleatórias são valores gerados por algum processo incerto, como a altura das pessoas, o resultado de um experimento ou comportamentos que variam de indivíduo para indivíduo. No exemplo da aposta entre Ana e Bia, o experimento aleatório consiste em entrevistar 10 pessoas e registrar a resposta de cada uma à pergunta **"Gêmeos é o melhor signo do zodíaco, né?"**. Ao associarmos as respostas "sim" ou "não" aos retornos financeiros correspondentes, obtemos nossa variável aleatória.
+
+Apesar de incertas, variáveis aleatórias não se comportam de qualquer maneira: elas seguem o que chamamos de **distribuição**. Uma distribuição descreve como os possíveis valores de uma variável aleatória se espalham e com que frequência cada valor tende a aparecer. Em outras palavras, ela é a "história" dos dados: mostra quais resultados são comuns, quais são raros e qual é o comportamento geral daquela variável na população.
+
+No exemplo que estamos usando, ao entrevistar 10 pessoas, calculamos o retorno financeiro daquele grupo. Esse retorno segue uma distribuição chamada **Binomial**, que descreve situações em que repetimos o mesmo experimento diversas vezes (fazer a mesma pergunta para várias pessoas) e cada tentativa só pode resultar em duas saídas possíveis, como "sim" ou "não". A distribuição Binomial nos diz quantas vezes um determinado resultado tende a aparecer ao longo dessas repetições, assumindo que cada pessoa responde de forma independente e que a probabilidade de responder "sim" é sempre a mesma.
+
+Além da Binomial, existem várias outras distribuições muito usadas na prática, como a Normal, a Gamma, a Poisson e a Beta, e por aí vai... Cada uma descreve comportamentos e padrões distintos que aparecem em diferentes tipos de dados. 
+
+No gráfico abaixo, simulamos populações que seguem algumas dessas distribuições para observar visualmente como elas se apresentam.
+
+```{r echo = TRUE}
+
+set.seed(123)
+distributions <- tibble(
+  distribution = c("Binomial", "Normal", "Beta"),
+  values = list(
+    rbinom(100000, size = 10, prob = 0.3),
+    rnorm(100000, mean = 0, sd = 1),
+    rbeta(100000, shape1 = 8, shape2 = 2)
+  )
+) |> 
+  tidyr::unnest(values) |> 
+  rename(random_variable = values)
+
+```
+
+```{r}
+
+distributions |> 
+  ggplot(
+    aes(
+      x = random_variable
+    )
+  ) +
+  geom_histogram() +
+  facet_wrap(
+    ~distribution,
+    scales = "free"
+  ) +
+  theme_minimal() +
+  labs(
+    x = "variável aleatória",
+    y = "quantidade",
+    title = "Exemplo de populações que seguem diferentes distribuições"
   )
 
 ```
 
-## Valor esperado em diferentes distribuições
+
+O objetivo deste post não é aprofundar no estudo das distribuições, mas sim discutir o valor esperado. E aqui vem o ponto-chave que gostaria de trazer nessa seção: **o conceito de valor esperado é o mesmo para qualquer distribuição**. Independentemente da forma da distribuição populacional da variável aleatória, **o valor esperado é sempre a média populacional**.
+
+Abaixo, mostramos para cada distribuição simulada anteriormente o cálculo da média populacional (ou seja, a média considerando todos os valores gerados naquela população simulada).
+
+```{r echo = TRUE}
+
+distributions |> 
+  summarise(
+    population_mean = mean(random_variable),
+    .by = c(distribution)
+  ) |> 
+  arrange(
+    distribution
+  ) |> 
+  mk_tbl(
+    table_title = "Média populacional de diferentes distribuições"
+  )
+
+```
+
+<br>
+Em seguida, aplicamos, para cada uma dessas populações, o cálculo do valor esperado pelo método empírico descrito na seção anterior e podemos observar que o valor obtido empiricamente é praticamente igual à média populacional.
+
+```{r echo = TRUE}
+
+distributions_samples <- distributions |> 
+  group_by(distribution) |> 
+  summarise(
+    sample_mean = purrr::map_dbl(
+      1:1000,
+      ~mean(sample(random_variable, size = 1000, replace = TRUE))
+    )
+  ) |> 
+  ungroup()
+
+distributions_samples |> 
+  summarise(
+    expected_value = mean(sample_mean),
+    .by = c(distribution)
+  ) |> 
+  arrange(
+    distribution
+  ) |> 
+  mk_tbl(
+    table_title = "Valor esperado de diferentes distribuições"
+  )
+
+```
+
+<br>
+*Importante: para cada distribuição, também poderíamos calcular o valor esperado usando a fórmula teórica ou diretamente a partir dos parâmetros da distribuição. Para manter o texto mais simples, ficamos apenas com o cálculo empírico.*
+
+Saber que o valor esperado é a média teórica de uma distribuição é importante porque ele representa o ponto em torno do qual a variável aleatória "se organiza": o seu verdadeiro "centro de gravidade". Todavia, na prática, quase nunca temos acesso à distribuição completa (ou seja, aos dados populacionais). O que temos são amostras da população real. Por isso, o nosso trabalho costuma ser estimar a média populacional a partir da média amostral. Quando entendemos que o valor esperado é justamente essa **média teórica** que estamos tentando aproximar com os dados observados, conseguimos interpretar melhor o que nossas estimativas significam, avaliar o quanto elas estão próximas do "centro" real da variável e tomar decisões mais informadas mesmo diante da incerteza. Compreender o valor esperado, portanto, é entender o ponto de equilíbrio da variável, seja olhando para toda a distribuição, seja olhando para os dados que conseguimos observar.
 
 # A melhor aposta
 
-blá blá blá 
+Voltando ao tema central deste post, chegamos à conclusão de que o resultado da aposta entre Ana e Bia depende, no fim das contas, da SORTE. Porém, com um pouco de estatística, conseguimos ir além do palpite intuitivo. A partir da definição de valor esperado, descobrimos algo importante: a estrutura da aposta favorece Ana, já que o resultado financeiro mais provável gira em torno de 12 reais de ganho.
 
+Contudo, uma outra pergunta surge a partir do que estudamos: se Ana decidisse mudar o valor pago por cada pessoa que responde "sim", haveria algum ponto em que a aposta se tornaria desfavorável para ela?
 
-```{r}
+É exatamente aqui que o valor esperado mostra sua força. Ele permite que Ana explore diferentes cenários antes mesmo de fazer a aposta. Basta variar o valor pago por cada resposta "sim" e calcular, para cada possibilidade, se o balanço financeiro esperado é positivo ou negativo. 
+
+No código abaixo, calculamos o valor esperado da aposta considerando que as respostas "sim" dos entrevistados poderiam variar entre R\$ 1 e R\$ 20. Pelo gráfico a seguir, observamos que, se o pagamento por resposta "sim" fosse menor que R\$ 5, Ana tenderia a perder dinheiro!
+
+```{r echo = TRUE}
 
 n <- 10 # pessoas amostradas
-results <- NULL
+best_bet <- NULL
 
 for (i in seq(1:1000)){
   
@@ -432,7 +567,7 @@ for (i in seq(1:1000)){
   
   # rendimento caso o valor da aposte mude
   balance <- c()
-  bet_money_max <- 10
+  bet_money_max <- 20
   for (j in seq(1:bet_money_max)){
     b <- (sum(smp) * j) - ((n - sum(smp)) * 1)
     balance <- c(balance, b)
@@ -450,36 +585,15 @@ for (i in seq(1:1000)){
   )
   
   # tabela final
-  results <- results |> bind_rows(temp)
+  best_bet <- best_bet |> bind_rows(temp)
   
 }
 
 ```
 
-
 ```{r}
 
-results |> 
-  filter(
-    bet_money == 10
-  ) |> 
-  ggplot(
-    aes(
-      x = balance
-    )
-  ) +
-  geom_histogram()
-  # scale_x_continuous(
-  #   breaks = seq(min(results), max(results), by = 2),   # valores que aparecem no eixo
-  #   #limits = c(600, 1000)               # (opcional) define o range do eixo
-  # )
-
-```
-
-
-```{r}
-
-results |> 
+best_bet |> 
   summarise(
     #n_samples = n(),
     expected_balance = mean(balance),
@@ -492,283 +606,16 @@ results |>
     )
   ) +
   geom_line() +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") 
-  
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(
+    x = "valor apostado",
+    y = "retorno esperado",
+    title = "Retorno esperado para diferentes valores de aposta"
+  )
 
 ```
 
+O mais interessante é perceber que essa lógica não vale só para a aposta da Ana. Ela vale para praticamente qualquer situação incerta da vida: investimentos, decisões de produto, estratégias de negócio, experimentos, pesquisas, escolhas do dia a dia. **O valor esperado nos dá uma forma racional de enxergar onde está o ponto de equilíbrio de um processo incerto.**
 
-2. A intuição: média ponderada pelos resultados possíveis
-
-Explique que o valor esperado é o “resultado médio” de um experimento aleatório, ponderado pelas probabilidades de cada resultado.
-
-Mostre que não é o resultado que ocorre de verdade, mas o valor médio que se espera em longo prazo.
-
-```{r}
-
-# ------------------------------------------------------------
-# Simulação: valor esperado, média populacional e médias amostrais
-# Distribuição: Log-Normal (cauda à direita)
-# ------------------------------------------------------------
-
-set.seed(42)
-
-# 1) Parâmetros da distribuição Log-Normal
-mu <- 0      # média do log
-sigma <- 1   # desvio padrão do log
-
-# 2) Gerar uma "população" grande
-pop_size <- 1e6
-population <- rlnorm(pop_size, meanlog = mu, sdlog = sigma)
-
-# 3) Média empírica da população
-pop_mean_empirical <- mean(population)
-
-# 4) Valor esperado teórico da Log-Normal: E[X] = exp(mu + sigma^2 / 2)
-pop_expected_theoretical <- exp(mu + sigma^2 / 2)
-
-# 5) Comparação
-comparison <- data.frame(
-  medida = c("Média empírica da população", "Valor esperado teórico", "Diferença (empírica - teórico)"),
-  valor = c(pop_mean_empirical,
-            pop_expected_theoretical,
-            pop_mean_empirical - pop_expected_theoretical)
-)
-print(comparison)
-
-# 6) Gerar várias amostras e calcular médias amostrais
-num_samples <- 1000   # número de amostras
-sample_size <- 50     # tamanho de cada amostra
-
-sample_means <- replicate(num_samples, mean(rlnorm(sample_size, meanlog = mu, sdlog = sigma)))
-
-mean_of_sample_means <- mean(sample_means)
-sd_of_sample_means <- sd(sample_means)
-
-# 7) Resultados finais
-summary_results <- data.frame(
-  descricao = c("Média empírica da população",
-                "Valor esperado teórico (LogNormal)",
-                "Diferença (empírica - teórico)",
-                "Número de amostras geradas",
-                "Tamanho de cada amostra",
-                "Média das médias amostrais",
-                "Desvio padrão das médias amostrais"),
-  valor = c(pop_mean_empirical,
-            pop_expected_theoretical,
-            pop_mean_empirical - pop_expected_theoretical,
-            num_samples,
-            sample_size,
-            mean_of_sample_means,
-            sd_of_sample_means)
-)
-
-print(summary_results)
-
-# 8) Histograma das médias amostrais
-hist(sample_means,
-     breaks = 30,
-     main = "Histograma das médias amostrais (1000 amostras, n=50)",
-     xlab = "Média amostral",
-     col = "skyblue",
-     border = "white")
-
-# ------------------------------------------------------------
-# Interpretação esperada:
-# - O valor esperado e a média populacional são praticamente iguais (diferença pequena).
-# - A média das médias amostrais se aproxima do valor esperado teórico,
-#   confirmando que a média amostral é um estimador não viesado de E[X].
-# ------------------------------------------------------------
-
-
-```
-
-```{r}
-
-hist(population)
-
-```
-
-```{r}
-
-# Definindo um tamanho de população "muito grande"
-N <- 10000000 # 10 milhões de elementos
-
-# ----------------------------------------------------------------------
-# 1. SIMULAÇÃO DA POPULAÇÃO NORMAL
-# ----------------------------------------------------------------------
-
-# Parâmetros escolhidos
-mu_normal <- 50    # Média populacional teórica (mu)
-sigma_normal <- 10 # Desvio padrão populacional (sigma)
-
-# Simulação (Geração da POPULAÇÃO)
-set.seed(42) # Para reprodutibilidade
-populacao_normal <- rnorm(n = N, mean = mu_normal, sd = sigma_normal)
-
-# ----------------------------------------------------------------------
-# 2. SIMULAÇÃO DA POPULAÇÃO BETA
-# ----------------------------------------------------------------------
-
-# Parâmetros escolhidos (Beta geralmente varia entre 0 e 1)
-alpha_beta <- 2 # Parâmetro de forma alfa
-beta_beta <- 5  # Parâmetro de forma beta
-
-# Simulação (Geração da POPULAÇÃO)
-set.seed(42) # Para reprodutibilidade
-populacao_beta <- rbeta(n = N, shape1 = alpha_beta, shape2 = beta_beta)
-
-# ----------------------------------------------------------------------
-# 3. FÓRMULA TEÓRICA E CÁLCULO DA MÉDIA POPULACIONAL
-# ----------------------------------------------------------------------
-
-cat("--- Distribuição Normal (N =", N, ") ---\n")
-
-# - Formula TEÓRICA para a Média Populacional (mu_normal)
-# Para uma distribuição Normal N(mu, sigma^2), a média populacional é o próprio parâmetro mu.
-cat("FÓRMULA TEÓRICA: mu = mu\n")
-
-# - Cálculo da Média Populacional (mu) usando a FÓRMULA TEÓRICA
-media_teorica_normal <- mu_normal
-cat("Média Populacional (TEÓRICA):", media_teorica_normal, "\n")
-
-# - Cálculo da Média Amostral (estimativa da média populacional)
-# Soma de todos os elementos da simulação dividida por N
-media_simulada_normal <- sum(populacao_normal) / N
-cat("Média Amostral (SIMULADA):", media_simulada_normal, "\n")
-
-# ----------------------------------------------------------------------
-
-cat("\n--- Distribuição Beta (N =", N, ") ---\n")
-
-# - Formula TEÓRICA para a Média Populacional (mu_beta)
-# Para uma distribuição Beta(alpha, beta), a média populacional é alpha / (alpha + beta).
-cat("FÓRMULA TEÓRICA: mu = alpha / (alpha + beta)\n")
-
-# - Cálculo da Média Populacional (mu) usando a FÓRMULA TEÓRICA
-media_teorica_beta <- alpha_beta / (alpha_beta + beta_beta)
-cat("Média Populacional (TEÓRICA):", media_teorica_beta, "\n")
-
-# - Cálculo da Média Amostral (estimativa da média populacional)
-# Soma de todos os elementos da simulação dividida por N
-media_simulada_beta <- sum(populacao_beta) / N
-cat("Média Amostral (SIMULADA):", media_simulada_beta, "\n")
-
-# Nota: A função 'mean()' no R faz exatamente essa soma e divisão
-# media_simulada_beta_alt <- mean(populacao_beta) 
-# cat("Média Amostral (SIMULADA - usando mean()):", media_simulada_beta_alt, "\n")
-
-```
-
-```{r}
-
-hist(populacao_beta)
-
-```
-
-```{r}
-
-mean(populacao_beta)
-median(populacao_beta)
-
-```
-
-
-
-
-```{r}
-
-# Parâmetros definidos no exemplo anterior:
-mu_normal <- 50
-sigma_normal <- 10
-alpha_beta <- 2
-beta_beta <- 5
-
-cat("=================================================================\n")
-cat("                VALOR ESPERADO (MÉDIA POPULACIONAL) \n")
-cat("=================================================================\n\n")
-
-# ----------------------------------------------------------------------
-# A. DISTRIBUIÇÃO NORMAL
-# ----------------------------------------------------------------------
-cat("A. DISTRIBUIÇÃO NORMAL (Parâmetros: mu = ", mu_normal, ", sigma = ", sigma_normal, ")\n", sep="")
-cat("-----------------------------------------------------------------\n")
-
-# 1. Fórmula Teórica
-cat("Fórmula Teórica do Valor Esperado (E[X]): E[X] = mu\n")
-
-# 2. Cálculo Teórico
-valor_esperado_normal <- mu_normal
-cat("Cálculo Teórico do Valor Esperado (E[X]):", valor_esperado_normal, "\n\n")
-
-
-# ----------------------------------------------------------------------
-# B. DISTRIBUIÇÃO BETA
-# ----------------------------------------------------------------------
-cat("B. DISTRIBUIÇÃO BETA (Parâmetros: alpha = ", alpha_beta, ", beta = ", beta_beta, ")\n", sep="")
-cat("-----------------------------------------------------------------\n")
-
-# 1. Fórmula Teórica
-cat("Fórmula Teórica do Valor Esperado (E[X]): E[X] = alpha / (alpha + beta)\n")
-
-# 2. Cálculo Teórico
-valor_esperado_beta <- alpha_beta / (alpha_beta + beta_beta)
-cat("Cálculo Teórico do Valor Esperado (E[X]):", valor_esperado_beta, " (ou 2/7)\n")
-
-# ----------------------------------------------------------------------
-
-# (Opcional: Comparação com a Média da Simulação anterior)
-# Se você rodar o código original junto com este, a comparação será:
-
-# Média Amostral (Simulada, N=10M)
-# Normal: 50.00010
-# Beta:   0.2857211
-
-cat("\n=================================================================\n")
-cat("Comparação (Teórico vs. Simulado):\n")
-cat("Normal - Teórico:", valor_esperado_normal, "| Simulada:", mean(populacao_normal), "\n")
-cat("Beta   - Teórico:", valor_esperado_beta, "| Simulada:", mean(populacao_beta), "\n")
-cat("=================================================================\n")
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
+E, no fundo, é isso que torna a estatística tão fascinante: assim como o tarô e a astrologia, ela tenta lançar luz sobre o desconhecido, e, a partir de ferramentas que nos permitem quantificar incertezas, nos ajuda a comparar cenários e entender, com mais clareza, o que podemos esperar do futuro. Estatística não elimina o acaso, mas nos ajuda a navegar por ele com muito mais sabedoria.
 
