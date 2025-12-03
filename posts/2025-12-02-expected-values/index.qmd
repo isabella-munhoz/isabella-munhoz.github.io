@@ -59,7 +59,7 @@ mk_tbl <- function(data, table_title) {
 
 Vamos começar imaginando um mundo paralelo: um lugar com 1 milhão de habitantes. Como conhecemos cada pessoa desse mundo, sabemos exatamente a resposta deles para uma das perguntas mais importantes já feitas: *“Gêmeos é o melhor signo do zodíaco, né?”*.
 
-Claro que a resposta certa seria **SIM**, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 300 mil concordam que Gêmeos é o melhor signo, enquanto 700 mil discordam (eu sei... as pessoas têm alguma resistência com geminianos... completamente injustificada, aliás).
+Claro que a resposta certa seria **SIM**, mas, para não dizerem por aí que estou favorecendo meu próprio signo, vamos supor outra realidade: entre os 1 milhão de habitantes, 200 mil concordam que Gêmeos é o melhor signo, enquanto 800 mil discordam (eu sei... as pessoas têm alguma resistência com geminianos... completamente injustificada, aliás).
 
 A tabela abaixo apresenta 10 habitantes do mundo que criamos. A coluna **id** representa o identificador de cada indivíduo (como se fosse o CPF), enquanto a coluna **answer** indica se aquela pessoa acredita que Gêmeos é o melhor signo do zodíaco (0 = “não”, 1 = “sim”).
 
