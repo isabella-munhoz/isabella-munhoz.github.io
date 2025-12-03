@@ -326,7 +326,7 @@ As variáveis aleatórias se tornam especialmente interessantes porque, apesar d
 
 # Valor esperado
 
-Quando comecei a estudar sobre valor esperado, vi muitas definições que se complementavam e ao mesmo tempo me confundiam um pouco. Vou tentar, nessa seção, conectar todas as idéias de modo que fique mais fácil entender o conceito de valor esperado conectando diferentes maneiras de enxergá-lo.
+Quando comecei a estudar valor esperado, encontrei diversas definições que, embora se complementassem, às vezes me deixavam confusa. Nesta seção, minha proposta é organizar essas ideias e mostrar como elas se conectam, para que o conceito de valor esperado fique mais intuitivo , independentemente da forma pela qual você o enxergue.
 
 ## Cálculo a partir de experimentos 
 
