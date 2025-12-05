@@ -360,7 +360,7 @@ window.Quarto = {
 <li><p>para cada pessoa que disser que Gêmeos não é o melhor signo, Ana paga 1 real para Bia;</p></li>
 <li><p>para cada pessoa que disser que Gêmeos é o melhor signo, Ana recebe 10 reais da Bia.</p></li>
 </ul>
-<p><em>Será que Ana vai acabar mesmo ganhando dinheiro com esse jogo?</em></p>
+<p><em>Será que Ana vai acabar ganhando dinheiro com esse jogo?</em></p>
 </section>
 <section id="que-os-jogos-comecem" class="level1">
 <h1>Que os jogos comecem</h1>
@@ -372,8 +372,8 @@ window.Quarto = {
 <li><p>Ana perde 8 reais pelas oito respostas “não”.</p></li>
 </ul>
 <p>Ou seja, <em>o ganho esperado é de (+20 -8) 12 reais.</em></p>
-<p>Como geramos a população desse mundo fictício, vamos ver a aposta acontecendo na prática?</p>
-<p>Abaixo, amostramos 10 pessoas da nossa população (ou seja, as 10 pessoas aleatórias que Ana e Bia encontrariam na rua) e calculamos quanto a Ana teria ganhado nesse cenário.</p>
+<p>Como geramos a população desse mundo fictício, vamos ver se isso acontece na prática?</p>
+<p>Abaixo, amostramos 10 pessoas da nossa população (ou seja, as 10 pessoas aleatórias que Ana e Bia encontrariam na rua) e calculamos quanto Ana teria ganhado nesse cenário.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
@@ -466,7 +466,7 @@ window.Quarto = {
 </div>
 <p><br> Nesse último cenário, todas as pessoas entrevistadas diriam que não gostam do signo de gêmeos, e, com isso, Ana teria <strong>perdido 10 reais!!!</strong></p>
 <p>Bom, é óbvio que o que realmente vai acontecer vai depender da sorte… mas, pelo que notamos das amostras selecionadas acima, em 2 cenários a aposta teria sido positiva pra Ana e em 1 cenário ela teria perdido dinheiro.</p>
-<p>Como estamos em um ambiente de imaginação (e temos a população interia desse mundo), podemos extrair inúmeas e inúmeras amostras para ver qual seria o cenário mais comum. Para isso, retiramos 1000 amostras da população e, para cada amostra, calculamos qual o retorno financeiro cada amostra geraria para Ana. Na tabela abaixo, temos o exemplo de 10 dessas 1000 amostras.</p>
+<p>Como estamos em um ambiente de imaginação (e temos a população interia desse mundo), podemos extrair inúmeas e inúmeras amostras para ver qual seria o cenário mais comum. Para isso, retiramos 1000 amostras da população e, para cada amostra, calculamos qual o retorno financeiro aquela amostra geraria para Ana. Na tabela abaixo, temos o exemplo de 10 dessas 1000 amostras.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 5px; margin: 0 auto;overflow-x: scroll; width:80%; ">
@@ -549,8 +549,7 @@ window.Quarto = {
 </div>
 </div>
 <p><br></p>
-<p>Podemos notar nesses 10 exemplos que em alguns cenários Ana ganha mais dinheiro do que em outros cenários. Como olhar dados em tabelas não nos ajudam a tirar grandes conclusmnões, o</p>
-<p>O gráfico abaixo nos ajuda a visualizar o balanço financeiro de todas as 1000 amostras que extraímos acima.</p>
+<p>Podemos notar nesses 10 exemplos que em alguns cenários Ana ganha mais dinheiro do que em outros cenários. Como olhar dados em tabelas não nos ajudam a tirar grandes conclusões, o gráfico abaixo nos ajuda a visualizar o balanço financeiro de todas as 1000 amostras que extraímos acima.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -568,12 +567,12 @@ window.Quarto = {
 <p>Antes de falar especificamente sobre valor esperado, é importante definirmos dois conceitos fundamentais em estatística: <strong>experimento aleatório</strong> e <strong>variáveis aleatórias</strong>.</p>
 <p>Um <strong>experimento aleatório</strong> é qualquer processo cujo resultado não pode ser previsto com certeza antes de acontecer. Embora não saibamos exatamente qual será o desfecho, conhecemos o conjunto de possibilidades. Exemplos comuns incluem escolher uma pessoa ao acaso e medir sua altura, observar quanto tempo um ônibus demora para chegar a determinado local ou registrar a temperatura de um dia específico. Realizamos experimentos aleatórios para estudar fenômenos que envolvem incerteza: queremos compreender padrões, calcular probabilidades e prever comportamentos futuros, mesmo quando cada resultado individual é imprevisível.</p>
 <p>Para analisar os resultados de um experimento aleatório (que muitas vezes não são numéricos), utilizamos a ideia de <strong>variável aleatória</strong>. Uma variável aleatória é uma regra que transforma cada resultado do experimento em um número: essa regra recebe como entrada um elemento do experimento (uma pessoa, um dia, uma observação) e devolve um valor numérico que representa alguma característica desse elemento, como altura, tempo de atraso, quantidade de chuva ou um código associado a uma categoria. Por exemplo, em um experimento que consiste em observar o resultado dos lançamentos de uma moeda, podemos representar o experimento matematicamente como o valor 1 para toda vez que sair “cara” e 0 para toda vez que sair “coroa”. Essa transformação é essencial porque permite usar ferramentas matemáticas como médias, variâncias e probabilidades para descrever o fenômeno. A variável aleatória funciona, portanto, como uma ponte que traduz o resultado incerto do mundo real para um formato numérico que podemos analisar.</p>
-<p>No exemplo da aposta entre Ana e Bia, o <strong>experimento aleatório</strong> consiste em entrevistar 10 pessoas e registrar a resposta de cada pessoa à pergunta <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>. Embora não saibamos antecipadamente qual será a resposta de cada entrevistado, sabemos que cada pessoa pode responder apenas “sim” ou “não”. Isso torna o experimento aleatório: mesmo conhecendo os possíveis resultados, a combinação exata de respostas observadas (e, portanto, o ganho financeiro final) só é revelada ao concluir as entrevistas. A <strong>variável aleatória</strong>, nesse caso, é a regra que traduz cada resposta a um valor numérico associado ao retorno financeiro: se a resposta for “sim”, o retorno financeiro é +10, se a resposta for “não” o retorno financeiro é -1. Essa transformação converte um resultado qualitativo (“sim” ou “não”) em um número, permitindo calcular médias, probabilidades e, principalmente, o ganho final. Quando somamos os valores atribuídos às 10 respostas obtemos o ganho total da aposta, que depende diretamente das respostas observadas no experimento.</p>
+<p>No exemplo da aposta entre Ana e Bia, o <strong>experimento aleatório</strong> consiste em entrevistar 10 pessoas e registrar a resposta de cada pessoa à pergunta <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>. Embora não saibamos antecipadamente qual será a resposta de cada entrevistado, sabemos que cada pessoa pode responder apenas “sim” ou “não”. Isso torna o experimento, portanto, aleatório: mesmo conhecendo os possíveis resultados, a combinação exata de respostas observadas só é revelada ao concluir as entrevistas; logo o ganho financeiro final também só é descoberto quando todas as entrevistas forem realizadas. A <strong>variável aleatória</strong>, nesse caso, é a regra que traduz cada resposta a um valor numérico associado ao retorno financeiro: se a resposta for “sim”, o retorno financeiro é +10, se a resposta for “não” o retorno financeiro é -1. Essa transformação converte um resultado qualitativo (“sim” ou “não”) em um número, permitindo calcular médias, probabilidades e, principalmente, o ganho final. Quando somamos os valores atribuídos às 10 respostas obtemos o ganho total da aposta, que depende diretamente das respostas observadas no experimento.</p>
 <p>As variáveis aleatórias se tornam especialmente interessantes porque, apesar de dependerem do acaso, elas possuem uma característica chamada <strong>valor esperado</strong>, que funciona como uma medida do resultado médio que esperaríamos observar se o experimento fosse repetido muitas vezes. No contexto da aposta entre Ana e Bia, o valor esperado nos ajuda a entender qual seria o ganho financeiro mais frequente considerando as regras da aposta, independentemente das oscilações naturais que podem ocorrer em cada conjunto de entrevistas. Essa ideia de resumir o comportamento médio (“mais frequente”) de algo incerto, é um dos motivos pelos quais variáveis aleatórias são tão úteis, e é exatamente o que exploraremos na próxima seção.</p>
 </section>
 <section id="valor-esperado" class="level1">
 <h1>Valor esperado</h1>
-<p>Quando comecei a estudar valor esperado, encontrei diversas definições que, embora se complementassem, às vezes me deixavam confusa. Nesta seção, minha proposta é organizar essas ideias e mostrar como elas se conectam, para que o conceito de valor esperado fique mais intuitivo , independentemente da forma pela qual você o enxergue.</p>
+<p>Quando comecei a estudar valor esperado, encontrei diversas definições que, embora se complementassem, às vezes me deixavam confusa. Nesta seção, minha proposta é organizar essas ideias e mostrar como elas se conectam, para que o conceito de valor esperado fique mais intuitivo, independentemente da forma pela qual você o enxergue.</p>
 <section id="cálculo-a-partir-de-experimentos" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-a-partir-de-experimentos">Cálculo a partir de experimentos</h2>
 <p>A primeira definição que temos é que o <strong>valor esperado é o resultado médio que esperamos obter se pudéssemos repetir um experimento aleatório muitas e muitas vezes, sob as mesmas condições</strong>. No mundo real, contudo, a maior parte dos experimentos aleatórios acontece apenas uma vez: no exemplo da aposta entre Ana e Bia, a entrevista com as 10 pessoas ocorre uma única vez, e são essas respostas que determinam se Ana ganhará ou perderá dinheiro. Ainda assim, podemos imaginar o que aconteceria <strong>em média</strong> se a mesma aposta fosse repetida inúmeras vezes, cada vez com 10 pessoas escolhidas ao acaso. O valor esperado é justamente esse resultado típico: o retorno médio que apareceria com mais regularidade ao longo de muitas repetições hipotéticas do experimento.</p>
@@ -661,7 +660,7 @@ X =
 </div>
 </div>
 </div>
-<p><br> Considerando que cada resposta “sim” gera um retorno de +10 reais e cada resposta “não” gera um retorno de –1 real, então a média calculada sobre toda a população resulta em um valor de R$ 1.20. Esse valor coincide exatamente com o que obtivemos pela fórmula do valor esperado: em média, cada pessoa entrevistada gera um ganho esperado de R$ 1.20.</p>
+<p><br> Considerando que cada resposta “sim” gera um retorno de +10 reais e cada resposta “não” gera um retorno de –1 real, então a média calculada sobre toda a população resulta em um valor de R$ 1.20. Esse valor coincide exatamente com o que obtivemos pela fórmula do valor esperado: em média, <strong>cada pessoa</strong> entrevistada gera um ganho esperado de R$ 1.20 (logo, 10 pessoas geram um ganho esperado de R$ 12).</p>
 </section>
 <section id="um-resumo-de-todas-as-definições" class="level2">
 <h2 class="anchored" data-anchor-id="um-resumo-de-todas-as-definições">Um resumo de todas as definições</h2>
@@ -677,10 +676,10 @@ X =
 </section>
 <section id="valor-esperado-em-diferentes-distribuições" class="level1">
 <h1>Valor esperado em diferentes distribuições</h1>
-<p>Conforme já mencionado, variáveis aleatórias são valores gerados por algum processo incerto, como a altura das pessoas, o resultado de um experimento ou comportamentos que variam de indivíduo para indivíduo. No exemplo da aposta entre Ana e Bia, o experimento aleatório consiste em entrevistar 10 pessoas e registrar a resposta de cada uma à pergunta <strong>“Gêmeos é o melhor signo do zodíaco, né?”</strong>. Ao associarmos as respostas “sim” ou “não” aos retornos financeiros correspondentes, obtemos nossa variável aleatória.</p>
+<p>Conforme já mencionado, variáveis aleatórias são valores gerados por algum processo incerto, como a altura das pessoas, o resultado de um experimento ou comportamentos que variam de indivíduo para indivíduo. No exemplo da aposta entre Ana e Bia, o experimento aleatório consiste em entrevistar 10 pessoas e registrar a resposta de cada uma à pergunta <em>“Gêmeos é o melhor signo do zodíaco, né?”</em>. Ao associarmos as respostas “sim” ou “não” aos retornos financeiros correspondentes, obtemos nossa variável aleatória.</p>
 <p>Apesar de incertas, variáveis aleatórias não se comportam de qualquer maneira: elas seguem o que chamamos de <strong>distribuição</strong>. Uma distribuição descreve como os possíveis valores de uma variável aleatória se espalham e com que frequência cada valor tende a aparecer. Em outras palavras, ela é a “história” dos dados: mostra quais resultados são comuns, quais são raros e qual é o comportamento geral daquela variável na população.</p>
 <p>No exemplo que estamos usando, ao entrevistar 10 pessoas, calculamos o retorno financeiro daquele grupo. Esse retorno segue uma distribuição chamada <strong>Binomial</strong>, que descreve situações em que repetimos o mesmo experimento diversas vezes (fazer a mesma pergunta para várias pessoas) e cada tentativa só pode resultar em duas saídas possíveis, como “sim” ou “não”. A distribuição Binomial nos diz quantas vezes um determinado resultado tende a aparecer ao longo dessas repetições, assumindo que cada pessoa responde de forma independente e que a probabilidade de responder “sim” é sempre a mesma.</p>
-<p>Além da Binomial, existem várias outras distribuições muito usadas na prática, como a Normal, a Gamma, a Poisson e a Beta, e por aí vai… Cada uma descreve comportamentos e padrões distintos que aparecem em diferentes tipos de dados.</p>
+<p>Além da Binomial, existem várias outras distribuições muito usadas na prática, como a Normal, a Gamma, a Poisson, a Beta, e por aí vai… Cada uma descreve comportamentos e padrões distintos que aparecem em diferentes tipos de dados.</p>
 <p>No gráfico abaixo, simulamos populações que seguem algumas dessas distribuições para observar visualmente como elas se apresentam.</p>
 <div class="cell">
 <details class="code-fold">
@@ -818,7 +817,7 @@ X =
 <p>Voltando ao tema central deste post, chegamos à conclusão de que o resultado da aposta entre Ana e Bia depende, no fim das contas, da SORTE. Porém, com um pouco de estatística, conseguimos ir além do palpite intuitivo. A partir da definição de valor esperado, descobrimos algo importante: a estrutura da aposta favorece Ana, já que o resultado financeiro mais provável gira em torno de 12 reais de ganho.</p>
 <p>Contudo, uma outra pergunta surge a partir do que estudamos: se Ana decidisse mudar o valor pago por cada pessoa que responde “sim”, haveria algum ponto em que a aposta se tornaria desfavorável para ela?</p>
 <p>É exatamente aqui que o valor esperado mostra sua força. Ele permite que Ana explore diferentes cenários antes mesmo de fazer a aposta. Basta variar o valor pago por cada resposta “sim” e calcular, para cada possibilidade, se o balanço financeiro esperado é positivo ou negativo.</p>
-<p>No código abaixo, calculamos o valor esperado da aposta considerando que as respostas “sim” dos entrevistados poderiam variar entre R$ 1 e R$ 20. Pelo gráfico a seguir, observamos que, se o pagamento por resposta “sim” fosse menor que R$ 5, Ana tenderia a perder dinheiro!</p>
+<p>No código abaixo, calculamos o valor esperado da aposta considerando que o valor da aposta para as respostas “sim” dos entrevistados poderia variar entre R$ 1 e R$ 20. Pelo gráfico a seguir, observamos que, se o valor apostado por resposta “sim” fosse menor que R$ 5, Ana tenderia a perder dinheiro!</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -864,7 +863,7 @@ X =
 </div>
 </div>
 </div>
-<p>O mais interessante é perceber que essa lógica não vale só para a aposta da Ana. Ela vale para praticamente qualquer situação incerta da vida: investimentos, decisões de produto, estratégias de negócio, experimentos, pesquisas, escolhas do dia a dia. <strong>O valor esperado nos dá uma forma racional de enxergar onde está o ponto de equilíbrio de um processo incerto.</strong></p>
+<p>O mais interessante é perceber que essa lógica não vale só para a aposta da Ana, ela vale para praticamente qualquer situação incerta da vida: investimentos, decisões de produto, estratégias de negócio, experimentos, pesquisas, escolhas do dia a dia. <strong>O valor esperado nos dá uma forma racional de enxergar onde está o ponto de equilíbrio de um processo incerto.</strong></p>
 <p>E, no fundo, é isso que torna a estatística tão fascinante: assim como o tarô e a astrologia, ela tenta lançar luz sobre o desconhecido, e, a partir de ferramentas que nos permitem quantificar incertezas, nos ajuda a comparar cenários e entender, com mais clareza, o que podemos esperar do futuro. Estatística não elimina o acaso, mas nos ajuda a navegar por ele com muito mais sabedoria.</p>
 
 
